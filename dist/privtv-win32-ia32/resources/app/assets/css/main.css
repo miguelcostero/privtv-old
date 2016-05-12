@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+body {
+  background-color: rgb(23,23,23);
+  color: rgb(222,222,222);
+  font-family: "Open Sans", sans-serif;
+
+  max-height: 100vh;
+  max-width: 100%;
+}
+
+.status-bar {
+  margin-top: 0em;
+  background-color: rgb(46,46,46);
+  padding-top: 1em;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 5em;
+}
