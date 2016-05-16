@@ -13,9 +13,32 @@ body {
   color: rgb(222,222,222);
   font-family: "Open Sans", sans-serif;
 
-  max-height: 100vh;
   max-width: 100%;
 }
+
+select.sort-by {
+	background: rgb(23, 23, 23);
+   	padding: 5px;
+   	font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
+   	border: 0;
+   	border-radius: 3px;
+   -webkit-appearance: none;
+   -webkit-transition: all 0.2s;
+   -moz-transition: all 0.2s;
+   transition: all 0.2s;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+select.sort-by:hover {
+	background-color: rgb(33,33,33);
+}
+
+select.sort-by:active {
+	background-color: rgb(33,33,33);
+}
+
 
 .status-bar {
   margin-top: 0em;
@@ -23,7 +46,91 @@ body {
   padding-top: 1em;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", sans-serif;
+}
+
+h1 {
   font-size: 5em;
+}
+
+.icons {
+  padding-top: 0em;
+  font-size: 1.5em;
+}
+
+.icons i {
+  padding-right: .7em;
+}
+
+.links a {
+  font-size: 1.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(222,222,222);
+  font-family: "Monserrat", sans-serif;
+  font-weight: 700;
+  padding-left: .7em;
+}
+
+.links a:hover {
+  color: rgb(192,192,192);
+}
+
+/* peliculas */
+.browse-movie-wrap {
+  margin: 1em;
+}
+
+.browse-movie {
+  font-family: "Monserrat", sans-serif;
+  max-width: 230px;
+  padding: 10px;
+  border: .5px;
+   border-radius: 3px;
+  -webkit-appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.browse-movie-info {
+  max-width: 210px;
+  margin-top: 0.7em;
+}
+
+.browse-movie-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.browse-movie-title a {
+  text-decoration: none !important;
+}
+
+.browse-movie-title a:hover {
+  color: rgb(34,91,14);
+}
+
+.browse-movie-tags span {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 10px;
+  margin-right: 3px;
+  font-size: .85em;
+  padding: 5px 7px;
+}
+
+.browse-movie-tags span {
+  background: #111;
+  display: inline-block;
+  color: #575656;
+  font-weight: 700;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -webkit-transition: color .15s ease-in-out;
+}
+
+.browse-movie-tags span:hover {
+  color: #777;
 }

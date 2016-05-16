@@ -12,23 +12,43 @@
 
     <div class="status-bar">
       <div class="container-fluid">
-        <p>barra</p>
+        <div class="row">
+          <div class="col-md-9">
+            <p class="pull-left links">
+              <select class="sort-by">
+                <option value="1">populares</option>
+                <option value="2">estrenos</option>
+                <option value="3">generos</option>
+                <option value="4">nombre</option>
+                <option value="5">recomendadas</option>
+              </select>
+            </p>
+          </div>
+          <div class="col-md-3">
+            <p class="pull-right icons">
+              <i class="fa fa-user"></i>
+              <i class="fa fa-cog"></i>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="container-fluid">
-      <h1>Hello World!</h1>
-      We are using node <script>document.write(process.versions.node)</script>,
-      Chrome <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.
-      <hr>
-      <div ng-controller="appController">
-        <h3>Consumir un json con resource en AngularJS</h3>
-          <ul>
-            <li ng-repeat="data in datosResource">
-              <p><b>Id:</b> {{ data.idEmpleado }} - <b>Nombre:</b> {{ data.nombre }} - <b>Apellido:</b> {{ data.apellido }} - <b>Telefono:</b> {{ data.telefono }} - <b>Rango:</b> {{ data.rango }} - <b>Dirección:</b> {{ data.direccion }} - <b>Fecha de nacimiento:</b> {{ data.fecha_nacimiento }}</p>
-            </li>
-          </ul>
+      <div ng-controller="appController" class="row">
+        <div class="browse-movie-wrap col-xs-10 col-sm-5" ng-repeat="data in datosResource">
+          <div class="browse-movie">
+            <img class="img-responsive center-block" src="{{ data.poster }}" alt="{{ data.nombre }}" width="210" height="315"/>
+            <div class="browse-movie-info">
+              <a href="#" class="browse-movie-title">{{ data.nombre }}</a>
+              <div class="browse-movie-year">{{ data.ano_publicacion }}</div>
+            </div>
+            <div class="browse-movie-tags">
+              <span>Comedia</span>
+              <span>Drama</span>
+            </div>
+          </div>
+        </div>
   		</div>
     </div>
 

@@ -9,7 +9,7 @@ app.controller("appController", function ($scope, $http, dataResource) {
 
 //de esta forma tan sencilla consumimos con $resource en AngularJS
 app.factory("dataResource", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/main/getempleados/bbfa29a387567a26a34ba1e5d871f722", //la url donde queremos consumir
+    return $resource("http://api-privtv.rhcloud.com/peliculas", //la url donde queremos consumir
         {}, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
