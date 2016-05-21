@@ -31,6 +31,9 @@
   "dependencies": {
     "font-awesome": "^4.6.2",
     "angular": "^1.5.5",
-    "angular-resource": "^1.5.5"
+    "angular-resource": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "underscore": "^1.8.3",
+    "phpjs": "^2.0.2"
   }
 }

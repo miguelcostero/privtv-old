@@ -78,20 +78,37 @@ h1 {
 }
 
 /* peliculas */
+.main-content {
+  max-width: 98%;
+}
+
 .browse-movie-wrap {
-  margin: 1em;
+  margin-top: 1em;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  float: left;
 }
 
 .browse-movie {
+  cursor: pointer;
   font-family: "Monserrat", sans-serif;
+  background-color: rgb(30,30,30);
   max-width: 230px;
+  min-height: 450px;
   padding: 10px;
   border: .5px;
    border-radius: 3px;
   -webkit-appearance: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+
+.browse-movie:hover {
+  border: .5px;
+   border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
 }
 
 .browse-movie-info {
@@ -105,11 +122,17 @@ h1 {
   color: #fff;
 }
 
-.browse-movie-title a {
+a.browse-movie-title:link {
   text-decoration: none !important;
+  text-transform: capitalize;
+  -webkit-transition: all 0.2s;
 }
 
-.browse-movie-title a:hover {
+a.browse-movie-title:hover {
+  color: rgb(34,91,14);
+}
+
+a.browse-movie-title:active {
   color: rgb(34,91,14);
 }
 
@@ -133,4 +156,63 @@ h1 {
 
 .browse-movie-tags span:hover {
   color: #777;
+}
+
+.animated {
+  opacity: 1;
+  max-height: auto;
+  overflow: hidden;
+  -webkit-transition: all 1s ease-in-out;
+}
+
+.animated.ng-hide {
+  opacity: 0;
+  max-height: 0px !important;
+  display: block !important;
+}
+
+.loading {
+  position: absolute;
+  left: 45%;
+  top: 30%;
+
+  font-size: 6em;
+  color: rgb(1,98,24);
+}
+
+/*
+ * Estilos del
+ * login
+ */
+.login-pad {
+  padding-top: 40px;
+}
+
+#login.well, #select.well {
+  background-color: rgb(30,30,30);
+  border-color: rgb(1,98,24);
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.brand-text {
+  font-size: 6em;
+  text-shadow: 5px 5px 4px rgba(0,0,0,0.3);
+}
+
+.select-pad {
+  padding-top: 150px;
+}
+
+.select-header {
+  font-size: 4em;
+  text-shadow: 5px 5px 4px rgba(0,0,0,0.3);
+}
+
+a:link {
+  text-decoration: none !important;
+}
+.nickname {
+  font-size: 1em;
+  color: rgb(212,212,212);
+  padding-top: 10px;
 }

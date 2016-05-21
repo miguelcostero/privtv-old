@@ -1,0 +1,30 @@
+<div ng-repeat="pelicula in pelicula">
+  <p><strong>id pelicula:</strong> {{ pelicula.idPelicula }}</p>
+  <p><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
+  <p><strong>Sipnosis:</strong> {{ pelicula.sipnosis }}</p>
+  <p><strong>Idioma:</strong> {{ pelicula.idioma }}</p>
+  <p><strong>Año de publicación:</strong> {{ pelicula.ano_publicacion }}</p>
+  <p><strong>Duración:</strong> {{ pelicula.duracion }} min</p>
+  <p><strong>Clasificacón:</strong> {{ pelicula.clasificacion }}</p>
+  <p><strong>Formato:</strong> {{ pelicula.formato }}</p>
+  <p>
+    <strong>Generos:</strong>
+    <ul>
+      <li ng-repeat="genero in pelicula.generos"> {{ genero.Nombre }}</li>
+    </ul>
+  </p>
+  <p>
+    <strong>Directores:</strong>
+    <ul>
+      <li ng-repeat="director in pelicula.directores"> {{ director.nombre }} {{ director.apellido }}</strong></li>
+    </ul>
+  </p>
+  <p>
+    <strong>Actores:</strong>
+    <ul>
+      <li ng-repeat="actor in pelicula.actores"> {{ actor.nombre }} {{ actor.apellido }}, como <strong>{{ actor.Personaje }}</strong></li>
+    </ul>
+  </p>
+</div>
+
+<p><a href="#/peliculas/usuario/{{ usuario_activo }}">Atrás</a></p>

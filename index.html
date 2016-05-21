@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="privtv">
+<html lang="es" ng-app="pritvApp">
   <head>
     <meta charset="UTF-8">
     <title>Priv.TV</title>
@@ -7,62 +7,24 @@
     <link rel="stylesheet" href="./assets/components/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/main.css" media="screen" title="no title" charset="utf-8">
-  </head>
-  <body>
-
-    <div class="status-bar">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-9">
-            <p class="pull-left links">
-              <select class="sort-by">
-                <option value="1">populares</option>
-                <option value="2">estrenos</option>
-                <option value="3">generos</option>
-                <option value="4">nombre</option>
-                <option value="5">recomendadas</option>
-              </select>
-            </p>
-          </div>
-          <div class="col-md-3">
-            <p class="pull-right icons">
-              <i class="fa fa-user"></i>
-              <i class="fa fa-cog"></i>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div ng-controller="appController" class="row">
-        <div class="browse-movie-wrap col-xs-10 col-sm-5" ng-repeat="data in datosResource">
-          <div class="browse-movie">
-            <img class="img-responsive center-block" src="{{ data.poster }}" alt="{{ data.nombre }}" width="210" height="315"/>
-            <div class="browse-movie-info">
-              <a href="#" class="browse-movie-title">{{ data.nombre }}</a>
-              <div class="browse-movie-year">{{ data.ano_publicacion }}</div>
-            </div>
-            <div class="browse-movie-tags">
-              <span>Comedia</span>
-              <span>Drama</span>
-            </div>
-          </div>
-        </div>
-  		</div>
-    </div>
-
 
     <script type="text/javascript">
-      window.$ = window.jQuery = require('./assets/components/jquery/dist/jquery.min.js');
+      window.$ = window.jQuery = require("./assets/components/jquery/dist/jquery.min.js");
     </script>
+    <script src="./assets/components/underscore/underscore-min.js" charset="utf-8"></script>
     <script src="./assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./assets/components/angular/angular.min.js"></script>
-    <script src="./assets/components/angular-resource/angular-resource.min.js" charset="utf-8"></script>
-    <script src="./assets/js/app.js" charset="utf-8"></script>
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
+    <script src="./assets/components/angular-resource/angular-resource.min.js"></script>
+    <script src="./assets/components/angular-route/angular-route.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/controller.js"></script>
+    <script src="./assets/js/factory.js"></script>
+  </head>
+  <body>
+    <div ng-show="loading" class="animated loading">
+      <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+      <span class="sr-only">Cargando...</span>
+    </div>
+    <div ng-view ng-hide="loading" class="animated"></div>
   </body>
 </html>

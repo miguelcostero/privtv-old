@@ -1,18 +1,22 @@
 //para hacer uso de $resource debemos colocarlo al crear el modulo
-var app = angular.module("privtv", ["ngResource"]);
-
-//con dataResource inyectamos la factoría
-app.controller("appController", function ($scope, $http, dataResource) {
-    //datosResource lo tenemos disponible en la vista gracias a $scope
-    $scope.datosResource = dataResource.get();
-})
-
-//de esta forma tan sencilla consumimos con $resource en AngularJS
-app.factory("dataResource", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/peliculas", //la url donde queremos consumir
-        {}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
-        //ponemos isArray en true
-        { get: { method: "GET", isArray: true }
-    })
-})
+angular.module("pritvApp", ["ngResource", "ngRoute"])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when("/", {
+        controller: "loginController",
+        templateUrl: "templates/login.html"
+      })
+      .when("/peliculas/usuario/:id_usuario", {
+        controller: "ListarPeliculasController",
+        templateUrl: "templates/listar_peliculas.html"
+      })
+      .when("/pelicula/:id_pelicula", {
+        controller: "DetallesPeliculaController",
+        templateUrl: "templates/detalles.html"
+      })
+      .when("/seleccionar-usuario/:email_cliente", {
+        controller: "SeleccionarUsuarioController",
+        templateUrl: "templates/seleccionar-usuario.html"
+      })
+      .otherwise("/")
+  })

@@ -1,0 +1,46 @@
+<div class="status-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <p class="pull-left links">
+          Ordenar:
+          <select class="sort-by" name="sort-by" ng-model="sort" ng-change="cambio()">
+            <option value="1" ng-selected="default">populares</option>
+            <option value="2">fecha publicación</option>
+            <option value="3">generos</option>
+            <option value="4">alfabeticamente</option>
+            <option value="5">recomendadas</option>
+          </select>
+        </p>
+      </div>
+      <div class="col-md-3" ng-show="logueado">
+        <p class="pull-right icons">
+          <i class="fa fa-user"></i>
+          <i class="fa fa-cog"></i>
+          <a ng-click="logout()" href="#"><i class="fa fa-sign-out"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid main-content">
+  <div class="row">
+    <div>
+      <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas">
+        <a href="#/pelicula/{{ pelicula.idPelicula }}">
+          <div class="browse-movie">
+            <img class="img-responsive center-block" src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>
+            <div class="browse-movie-info">
+              <a href="#/pelicula/{{ pelicula.idPelicula }}" class="browse-movie-title">{{ pelicula.nombre }}</a>
+              <div class="browse-movie-year">{{ pelicula.ano_publicacion }}</div>
+            </div>
+            <div class="browse-movie-tags">
+              <span ng-repeat="genero in pelicula.generos">{{ genero.Nombre }}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
