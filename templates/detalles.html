@@ -1,30 +1,70 @@
-<div ng-repeat="pelicula in pelicula">
-  <p><strong>id pelicula:</strong> {{ pelicula.idPelicula }}</p>
-  <p><strong>Nombre:</strong> {{ pelicula.nombre }}</p>
-  <p><strong>Sipnosis:</strong> {{ pelicula.sipnosis }}</p>
-  <p><strong>Idioma:</strong> {{ pelicula.idioma }}</p>
-  <p><strong>Año de publicación:</strong> {{ pelicula.ano_publicacion }}</p>
-  <p><strong>Duración:</strong> {{ pelicula.duracion }} min</p>
-  <p><strong>Clasificacón:</strong> {{ pelicula.clasificacion }}</p>
-  <p><strong>Formato:</strong> {{ pelicula.formato }}</p>
-  <p>
-    <strong>Generos:</strong>
-    <ul>
-      <li ng-repeat="genero in pelicula.generos"> {{ genero.Nombre }}</li>
-    </ul>
-  </p>
-  <p>
-    <strong>Directores:</strong>
-    <ul>
-      <li ng-repeat="director in pelicula.directores"> {{ director.nombre }} {{ director.apellido }}</strong></li>
-    </ul>
-  </p>
-  <p>
-    <strong>Actores:</strong>
-    <ul>
-      <li ng-repeat="actor in pelicula.actores"> {{ actor.nombre }} {{ actor.apellido }}, como <strong>{{ actor.Personaje }}</strong></li>
-    </ul>
-  </p>
-</div>
+<div class="container-fluid">
+  <div ng-repeat="pelicula in pelicula" class="movie-details">
+    <div class="row">
+      <div class="col-sm-3 img-top">
+        <img ng-src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" class="img-responsive img-thumbnail center-block"/>
+      </div>
+      <div class="col-sm-9 top">
+        <h2 class="nom-pelicula">{{pelicula.nombre}}</h2>
+        <div class="browse-movie-tags">
+          <p class="movie-info-resaltar">{{ pelicula.ano_publicacion }}</p>
+          <span ng-repeat="genero in pelicula.generos">{{ genero.Nombre }}</span>
+        </div>
 
-<p><a href="#/peliculas/usuario/{{ usuario_activo }}">Atrás</a></p>
+        <div class="botones">
+          <a href="#/reproductor/{{ pelicula.idPelicula }}" class="btn btn-success btn-lg"><i class="fa fa-play-circle"></i> Reproducir</a>
+          <a href="" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#{{ pelicula.idPelicula }}"><i class="fa fa-youtube-play" aria-hidden="true"></i> Trailer</a>
+
+        </div>
+      </div>
+    </div>
+    <div class="row pad">
+      <div class="col-sm-8 movie-info">
+        <h4>Sipnosis</h4>
+        <p class="sipnosis">{{ pelicula.sipnosis }}</p>
+        <br>
+        <p><strong>Duración:</strong> {{ pelicula.duracion }} min</p>
+        <p><strong>Clasificación:</strong> {{ pelicula.clasificacion }}</p>
+        <p><strong>Idioma:</strong> {{ pelicula.idioma }}</p>
+        <p><strong>Formáto:</strong> {{ pelicula.formato }}</p>
+
+      </div>
+      <div class="col-sm-4">
+        <p>
+          <h4>Directores</h4>
+          <p class="movie-info-details" ng-repeat="director in pelicula.directores"> {{ director.nombre }} {{ director.apellido }}</strong></p>
+        </p>
+        <p>
+          <h4>Elenco</h4>
+            <p class="movie-info-details" ng-repeat="actor in pelicula.actores"> {{ actor.nombre }} {{ actor.apellido }}, como <strong>{{ actor.Personaje }}</strong></p>
+        </p>
+      </div>
+    </div>
+
+    <p><a href="#/peliculas/usuario/{{ usuario_activo }}" >
+      <i class="fa fa-chevron-circle-left regresar-listar" aria-hidden="true"></i>
+    </a></p>
+
+    <div class="modal fade" id="{{ pelicula.idPelicula }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{ pelicula.nombre }} - Trailer</h4>
+          </div>
+          <div class="modal-body">
+            <video id="trailer" width="100%" height="auto" controls>
+              <source src="{{ pelicula.videoUrl }}" type="video/mp4" />
+
+              <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+              </p>
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

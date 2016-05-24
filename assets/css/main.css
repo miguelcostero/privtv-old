@@ -16,6 +16,32 @@ body {
   max-width: 100%;
 }
 
+.regresar{
+  position: absolute;
+  font-size: 2.5em;
+  top: 20px;
+  color: white;
+  left: 20px;
+}
+
+.regresar-listar{
+  position: relative;
+  font-size: 2.5em;
+  color: white;
+  left: 20px;
+  padding-bottom: 8px;
+
+}
+
+a.regresar-listar:link{
+  text-decoration: none;
+}
+
+a.regresar:link {
+  text-decoration: none;
+}
+
+
 select.sort-by {
 	background: rgb(23, 23, 23);
    	padding: 5px;
@@ -215,4 +241,66 @@ a:link {
   font-size: 1em;
   color: rgb(212,212,212);
   padding-top: 10px;
+}
+
+.img-top {
+  padding-top: 40px;
+}
+
+.top {
+  padding-top: 20px;
+}
+
+.nom-pelicula {
+  text-transform: capitalize;
+  font-size: 4em;
+}
+
+.pad {
+  padding-top: 30px;
+}
+
+.movie-info {
+  padding-left: 50px;
+}
+
+.movie-info-resaltar {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.movie-details {
+  background-color: rgb(28,28,28);
+}
+
+.sipnosis {
+  padding-top: 10px;
+  text-align: justify;
+}
+
+.movie-info-details {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.movie-info-details strong {
+  font-weight: bolder;
+}
+
+.botones {
+  padding-top: 30px;
+}
+
+.btn-success {
+  background-color: rgb(1,98,24);
+  border-color: rgb(1,98,24);
+}
+
+.btn-success:hover, .btn-success:link, .btn-success:active, .btn-success:focus {
+  background-color: rgb(2,61,16);
+  border-color: rgb(2,61,16);
+}
+
+.video-player {
+  max-width: 100%;
 }

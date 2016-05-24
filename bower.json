@@ -34,6 +34,6 @@
     "angular-resource": "^1.5.5",
     "angular-route": "^1.5.5",
     "underscore": "^1.8.3",
-    "phpjs": "^2.0.2"
+    "video.js": "^5.10.2"
   }
 }

@@ -10,18 +10,18 @@
           </div>
         </div>
 
-        <form name="loginform">
+        <form name="loginform" ng-submit="login()">
           <div class="form-group">
-            <label for="email_login">Correo Electónico</label>
-            <input name="email_login" id="email_login" type="email" ng-model="email_login" required="required" class="form-control">
+            <label for="email_login">Correo Electronico</label>
+            <input name="email_login" id="email_login" type="email" ng-model="user_form.email" required="required" class="form-control">
           </div>
 
           <div class="form-group">
             <label for="password_login">Contraseña</label>
-            <input name="password_login" id="password_login" type="password" ng-model="password_login" required="required" class="form-control">
+            <input name="password_login" id="password_login" type="password" ng-model="user_form.password" required="required" class="form-control">
           </div>
 
-          <button type="submit" ng-click="login()" class="btn btn-success pull-left">Iniciar Sesión</button>
+          <button type="submit" class="btn btn-success pull-left">Iniciar Sesión</button>
           <a href="#" class="btn btn-danger pull-right">Registrarse</a>
         </form>
       </div>

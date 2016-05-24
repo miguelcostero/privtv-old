@@ -177,3 +177,10 @@ app.factory("mensajesFlash", function($rootScope){
         }
     }
 });
+
+app.factory("subtitulosPelicula", function ($resource) {
+  return $resource("http://api-privtv.rhcloud.com/peliculas/:id_pelicula/subtitulos", //la url donde queremos consumir
+      { id_pelicula: "@id_pelicula" },
+      { get: { method: "GET", isArray: true }
+  })
+})

@@ -79,21 +79,20 @@ app.controller("ListarPeliculasController", function ($scope, $routeParams, peli
 });
 
 app.controller("loginController", function ($scope, $location, logCliente, $rootScope, sesionesControl) {
-  $scope.email_login = "";
-  $scope.password_login = "";
+  $scope.user_form = {};
 
   if (sesionesControl.get("clienteLogin")) {
     $location.path("/seleccionar-usuario/"+sesionesControl.get("email_cliente"));
   } else {
     $scope.login = function() {
       $rootScope.loading = true;
-      logCliente.login($scope.email_login, $scope.password_login);
+      logCliente.login($scope.user_form.email, $scope.user_form.password);
     };
   }
 });
 
-app.controller("DetallesPeliculaController", function ($scope, $routeParams, peliculaDetalles, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl) {
-  console.log($routeParams.id_pelicula);
+app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParams, $rootScope, peliculaDetalles, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl) {
+  $rootScope.loading = true;
   $scope.usuario_activo = sesionesControl.get("idUsuario");
   $scope.pelicula = peliculaDetalles.get({}, { "id_pelicula":$routeParams.id_pelicula }, function () {
     for (var i = 0; i < $scope.pelicula.length; i++) {
@@ -109,6 +108,8 @@ app.controller("DetallesPeliculaController", function ($scope, $routeParams, pel
       $scope.pelicula[i].generos =  obtnerGeneros($scope.pelicula[i].idPelicula);
       $scope.pelicula[i].actores =  obtnerActores($scope.pelicula[i].idPelicula);
       $scope.pelicula[i].directores =  obtnerDirectores($scope.pelicula[i].idPelicula);
+      $scope.pelicula[i].videoUrl = $sce.trustAsResourceUrl($scope.pelicula[i].movie_source);
+      $rootScope.loading = false;
     }
   });
 });
@@ -121,6 +122,21 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
       $rootScope.loading = false;
     });
   }
+});
 
+app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculaDetalles, $sce, subtitulosPelicula) {
+  $rootScope.loading = true;
 
+  $scope.pelicula = peliculaDetalles.get({}, {"id_pelicula": $routeParams.id_pelicula}, function () {
+    for (var i = 0; i < $scope.pelicula.length; i++) {
+      var subs = {};
+      $scope.pelicula[i].videoUrl = $sce.trustAsResourceUrl($scope.pelicula[i].movie_source);
+      $scope.pelicula[i].subtitulos = subtitulosPelicula.get({}, { "id_pelicula":$routeParams.id_pelicula });
+
+      for (var j = 0; j < $scope.pelicula[i].subtitulos.length; j++) {
+        console.log($scope.pelicula[i].subtitulos[j]);
+      }
+    }
+    $rootScope.loading = false;
+  });
 });

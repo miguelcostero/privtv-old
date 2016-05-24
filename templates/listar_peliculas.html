@@ -30,7 +30,7 @@
       <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas">
         <a href="#/pelicula/{{ pelicula.idPelicula }}">
           <div class="browse-movie">
-            <img class="img-responsive center-block" src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>
+            <img class="img-responsive center-block" ng-src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>
             <div class="browse-movie-info">
               <a href="#/pelicula/{{ pelicula.idPelicula }}" class="browse-movie-title">{{ pelicula.nombre }}</a>
               <div class="browse-movie-year">{{ pelicula.ano_publicacion }}</div>

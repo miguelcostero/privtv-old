@@ -1,0 +1,15 @@
+<div class="video-player">
+  <div ng-repeat="pelicula in pelicula">
+    <video id="player" autoplay preload="auto" width="90%" height="auto" controls>
+      <source ng-src="{{ pelicula.videoUrl }}" type="video/mp4">
+    </video>
+    <p ng-repeat="subs in pelicula.subtitulos">
+      {{ subs.idioma }}
+      {{ subs.ruta }}
+    </p>
+
+    <a href="#/pelicula/{{ pelicula.idPelicula }}">
+      <i class="fa fa-chevron-circle-left regresar" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
