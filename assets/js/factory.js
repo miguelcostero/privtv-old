@@ -1,13 +1,12 @@
 var app = angular.module("pritvApp");
 
-//de esta forma tan sencilla consumimos con $resource en AngularJS
-app.factory("peliculasPopulares", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/peliculas-populares", //la url donde queremos consumir
-        {}, //aquí podemos pasar variables que queramos pasar a la consulta
-        //a la función get le decimos el método, y, si es un array lo que devuelve
-        //ponemos isArray en true
-        { get: { method: "GET", isArray: true }
-    })
+app.factory("peliculas", function ($resource) {
+  return $resource("http://api-privtv.rhcloud.com/peliculas/:id_pelicula", { id_pelicula: "@id_pelicula" }, {
+    get: {
+      method: "GET",
+      isArray: true
+    }
+  })
 })
 
 app.factory("generoPelicula", function ($resource) {
@@ -17,33 +16,6 @@ app.factory("generoPelicula", function ($resource) {
         //ponemos isArray en true
         { get: { method: "GET", isArray: true }
     })
-})
-
-app.factory("peliculaDetalles", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas/:id_pelicula", //la url donde queremos consumir
-      { id_pelicula: "@id_pelicula" }, //aquí podemos pasar variables que queramos pasar a la consulta
-      //a la función get le decimos el método, y, si es un array lo que devuelve
-      //ponemos isArray en true
-      { get: { method: "GET", isArray: true }
-  })
-})
-
-app.factory("peliculasNuevas", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas-nuevas", //la url donde queremos consumir
-      {}, //aquí podemos pasar variables que queramos pasar a la consulta
-      //a la función get le decimos el método, y, si es un array lo que devuelve
-      //ponemos isArray en true
-      { get: { method: "GET", isArray: true }
-  })
-})
-
-app.factory("peliculasPorNombre", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas-alfabeticamente", //la url donde queremos consumir
-      {}, //aquí podemos pasar variables que queramos pasar a la consulta
-      //a la función get le decimos el método, y, si es un array lo que devuelve
-      //ponemos isArray en true
-      { get: { method: "GET", isArray: true }
-  })
 })
 
 app.factory("actoresPelicula", function ($resource) {
@@ -83,6 +55,7 @@ app.factory("logCliente", function ($http, $location, sesionesControl, mensajesF
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (data, status, headers, config) {
               if (status == 200) {
+                $rootScope.logueado = true;
                 $rootScope.loading = false;
                 //si todo ha ido bien limpiamos los mensajes flash
                 mensajesFlash.clear();

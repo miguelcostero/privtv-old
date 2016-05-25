@@ -5,6 +5,7 @@
         <p class="pull-left links">
           Ordenar:
           <select class="sort-by" name="sort-by" ng-model="sort" ng-change="cambio()">
+            <option value="">-- seleccione una opción --</option>
             <option value="1" ng-selected="default">populares</option>
             <option value="2">fecha publicación</option>
             <option value="3">generos</option>
@@ -36,7 +37,7 @@
               <div class="browse-movie-year">{{ pelicula.ano_publicacion }}</div>
             </div>
             <div class="browse-movie-tags">
-              <span ng-repeat="genero in pelicula.generos">{{ genero.Nombre }}</span>
+              <span ng-repeat="genero in pelicula._generos">{{ genero.Nombre }}</span>
             </div>
           </div>
         </a>

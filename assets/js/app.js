@@ -6,7 +6,7 @@ angular.module("pritvApp", ["ngResource", "ngRoute"])
         controller: "loginController",
         templateUrl: "templates/login.html"
       })
-      .when("/peliculas/usuario/:id_usuario", {
+      .when("/peliculas", {
         controller: "ListarPeliculasController",
         templateUrl: "templates/listar_peliculas.html"
       })

@@ -5,7 +5,7 @@
       <div id="select" class="col-sm-push-3 col-sm-6 well">
         <div class="row">
           <div class="col-sm-4" ng-repeat="usuario in usuarios">
-            <a href="#/peliculas/usuario/{{ usuario.idUsuario }}">
+            <a href="#/peliculas" ng-click="iniciar( usuario.idUsuario )">
               <img ng-src="{{ usuario.imagen_perfil }}" alt="{{ usuario.nickname }}" class="img-thumbnail center-block" width="100" height="100"/>
               <p class="nickname text-center">{{ usuario.nickname }}</p>
             </a>

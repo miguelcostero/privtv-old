@@ -1,80 +1,47 @@
 var app = angular.module("pritvApp");
 
 //con dataResource inyectamos la factoría
-app.controller("ListarPeliculasController", function ($scope, $routeParams, peliculasPopulares, generoPelicula, peliculasNuevas, peliculasPorNombre, $rootScope, logUsuarios, logCliente, sesionesControl) {
+app.controller("ListarPeliculasController", function ($scope, peliculas, generoPelicula, $rootScope, logUsuarios, logCliente, sesionesControl) {
     //datosResource lo tenemos disponible en la vista gracias a $scope
     $scope.sort = "";
     $rootScope.loading = true;
-    $scope.default = 1;
-
-    //información del usuario activo
-    var cacheSession = function (idUsuario) {
-        sesionesControl.set("usuarioLogin", true);
-        sesionesControl.set("idUsuario", idUsuario);
-    };
-    cacheSession($routeParams.id_usuario);
-    $scope.active_user = logUsuarios.getUser($routeParams.id_usuario).get();
+    $rootScope.logueado = true;
 
     //info cuenta cliente
-    $scope.logueado = logCliente.isLoggedIn();
-    $scope.logout = function () {
+    $rootScope.logout = function () {
       logUsuarios.userChange();
       logCliente.logout();
+      $rootScope.logueado = false;
     };
 
-    if (_.isEmpty($scope.sort)) {
-      $rootScope.loading = true;
-      $scope.Peliculas = peliculasPopulares.get(function () {
-        for (var i = 0; i < $scope.Peliculas.length; i++) {
-          var obtnerGeneros = function (id) {
-              return generoPelicula.get({}, { "id_pelicula":id });
-          }
-          $scope.Peliculas[i].generos =  obtnerGeneros($scope.Peliculas[i].idPelicula);
-          $rootScope.loading = false;
-        }
-      });
+    var obtnerGeneros = function (pelicula) {
+      for (var i = 0; i < pelicula.length; i++) {
+        pelicula[i]._generos = generoPelicula.get({}, { "id_pelicula":pelicula[i].idPelicula });
+      }
+        return pelicula;
     }
 
+    $scope.Peliculas = peliculas.get(function () {
+      obtnerGeneros($scope.Peliculas);
+      $rootScope.loading = false;
+    });
+
     $scope.cambio = function () {
-      console.log($scope.sort);
-      var index = $scope.sort;
       $rootScope.loading = true;
 
-      if (index == 1) {
-        $scope.Peliculas = peliculasPopulares.get(function () {
-          for (var i = 0; i < $scope.Peliculas.length; i++) {
-            var obtnerGeneros = function (id) {
-                return generoPelicula.get({}, { "id_pelicula":id });
-            }
-            $scope.Peliculas[i].generos =  obtnerGeneros($scope.Peliculas[i].idPelicula);
-          }
-          $rootScope.loading = false;
-        });
-      } else if (index == 2) {
-        $scope.Peliculas = peliculasNuevas.get(function () {
-          for (var i = 0; i < $scope.Peliculas.length; i++) {
-            var obtnerGeneros = function (id) {
-                return generoPelicula.get({}, { "id_pelicula":id });
-            }
-            $scope.Peliculas[i].generos =  obtnerGeneros($scope.Peliculas[i].idPelicula);
-          }
-          $rootScope.loading = false;
-        });
-      } else if (index == 3) {
+      if ($scope.sort == 1) {
+        $scope.Peliculas = _.sortBy($scope.Peliculas, 'numReproducciones').reverse();
+      } else if ($scope.sort == 2) {
+        $scope.Peliculas = _.sortBy($scope.Peliculas, 'fecha_hora_publicacion').reverse();
+      } else if ($scope.sort == 3) {
 
-      } else if (index == 4) {
-        $scope.Peliculas = peliculasPorNombre.get(function () {
-          for (var i = 0; i < $scope.Peliculas.length; i++) {
-            var obtnerGeneros = function (id) {
-                return generoPelicula.get({}, { "id_pelicula":id });
-            }
-            $scope.Peliculas[i].generos =  obtnerGeneros($scope.Peliculas[i].idPelicula);
-          }
-          $rootScope.loading = false;
-        });
-      } else if (index == 5) {
+      } else if ($scope.sort == 4) {
+        $scope.Peliculas = _.sortBy($scope.Peliculas, 'nombre');
+      } else if ($scope.sort == 5) {
 
       }
+
+      $rootScope.loading = false;
     };
 });
 
@@ -91,10 +58,11 @@ app.controller("loginController", function ($scope, $location, logCliente, $root
   }
 });
 
-app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParams, $rootScope, peliculaDetalles, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl) {
+app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParams, $rootScope, peliculas, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl) {
   $rootScope.loading = true;
+  $rootScope.logueado = true;
   $scope.usuario_activo = sesionesControl.get("idUsuario");
-  $scope.pelicula = peliculaDetalles.get({}, { "id_pelicula":$routeParams.id_pelicula }, function () {
+  $scope.pelicula = peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function () {
     for (var i = 0; i < $scope.pelicula.length; i++) {
       var obtnerGeneros = function (id) {
           return generoPelicula.get({}, { "id_pelicula":id });
@@ -115,6 +83,12 @@ app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParam
 });
 
 app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $rootScope, logUsuarios, $location, sesionesControl) {
+
+  $scope.iniciar = function (id_usuario) {
+    sesionesControl.set("usuarioLogin", true);
+    sesionesControl.set("idUsuario", id_usuario);
+  }
+
   if (sesionesControl.get("usuarioLogin")) {
     $location.path("/peliculas/usuario/"+sesionesControl.get("idUsuario"));
   } else {
@@ -124,10 +98,10 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   }
 });
 
-app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculaDetalles, $sce, subtitulosPelicula) {
+app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulosPelicula) {
   $rootScope.loading = true;
 
-  $scope.pelicula = peliculaDetalles.get({}, {"id_pelicula": $routeParams.id_pelicula}, function () {
+  $scope.pelicula = peliculas.get({}, {"id_pelicula": $routeParams.id_pelicula}, function () {
     for (var i = 0; i < $scope.pelicula.length; i++) {
       var subs = {};
       $scope.pelicula[i].videoUrl = $sce.trustAsResourceUrl($scope.pelicula[i].movie_source);

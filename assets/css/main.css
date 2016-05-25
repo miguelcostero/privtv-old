@@ -24,13 +24,18 @@ body {
   left: 20px;
 }
 
-.regresar-listar{
-  position: relative;
-  font-size: 2.5em;
+a.go-back {
   color: white;
-  left: 20px;
-  padding-bottom: 8px;
+  -webkit-transition: all 0.2s;
+}
 
+a.go-back:hover {
+  color: rgb(34,91,14);
+}
+
+.texto {
+  color: white;
+  font-size: 1.5em;
 }
 
 a.regresar-listar:link{
@@ -302,5 +307,55 @@ a:link {
 }
 
 .video-player {
-  max-width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#player {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.video-controls {
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   cursor: pointer;
+   background-color: #FFF;
+   border: 1px solid #000;
+}
+
+#play-btn {
+   left: 5px;
+}
+
+#pause-btn {
+   left: 5px;
+}
+
+#mute-btn {
+   left: 60px;
+}
+
+#unmute-btn {
+   left: 60px;
+}
+
+#stop-btn {
+   left: 115px;
+}
+
+#replay-btn {
+   left: 115px;
 }
