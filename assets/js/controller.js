@@ -99,18 +99,14 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
 });
 
 app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulosPelicula) {
-  $rootScope.loading = true;
 
-  $scope.pelicula = peliculas.get({}, {"id_pelicula": $routeParams.id_pelicula}, function () {
-    for (var i = 0; i < $scope.pelicula.length; i++) {
-      var subs = {};
-      $scope.pelicula[i].videoUrl = $sce.trustAsResourceUrl($scope.pelicula[i].movie_source);
-      $scope.pelicula[i].subtitulos = subtitulosPelicula.get({}, { "id_pelicula":$routeParams.id_pelicula });
+  $scope.interface = {};
 
-      for (var j = 0; j < $scope.pelicula[i].subtitulos.length; j++) {
-        console.log($scope.pelicula[i].subtitulos[j]);
-      }
-    }
-    $rootScope.loading = false;
+  $scope.atras = "1";
+
+  $scope.$on('$videoReady', function videoReady() {
+    $scope.interface.options.setAutoplay(true);
+    $scope.interface.sources.add("http://localhost/privtv/peliculas/1/1.mp4");
+    console.log("cargando");
   });
 });

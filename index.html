@@ -4,23 +4,36 @@
     <meta charset="UTF-8">
     <title>Priv.TV</title>
 
+    <!-- Estilos Perzonalizados, Bootstrap y Font Awesome -->
     <link rel="stylesheet" href="./assets/components/bootstrap/custom/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/main.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="./assets/components/videojs/dist/video-js.min.css" media="screen" title="no title" charset="utf-8">
 
+    <!-- Dependecias básicas y Bootstrap.JS -->
     <script type="text/javascript">
       window.$ = window.jQuery = require("./assets/components/jquery/dist/jquery.min.js");
     </script>
     <script src="./assets/components/underscore/underscore-min.js" charset="utf-8"></script>
     <script src="./assets/components/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/components/videojs/video.min.js" charset="utf-8"></script>
+
+    <!-- Angular.JS Cores -->
     <script src="./assets/components/angular/angular.min.js"></script>
     <script src="./assets/components/angular-resource/angular-resource.min.js"></script>
     <script src="./assets/components/angular-route/angular-route.min.js"></script>
+    <script src="./assets/components/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
+
+    <!-- videogular -->
+    <script src="./assets/components/videogular/videogular.min.js" charset="utf-8"></script>
+    <script src="./assets/components/videogular-controls/vg-controls.min.js" charset="utf-8"></script>
+    <script src="./assets/components/videogular-overlay-play/vg-overlay-play.js" charset="utf-8"></script>
+    <script src="./assets/components/videogular-buffering/vg-buffering.min.js" charset="utf-8"></script>
+    <script src="./assets/components/videogular-poster/vg-poster.min.js" charset="utf-8"></script>
+
+    <!-- Angular App -->
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/controller.js"></script>
     <script src="./assets/js/factory.js"></script>
+
   </head>
   <body>
     <div ng-show="loading" class="animated loading">

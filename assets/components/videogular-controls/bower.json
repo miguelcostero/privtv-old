@@ -1,0 +1,8 @@
+{
+  "name": "videogular-controls",
+  "version": "1.4.3",
+  "main": "./vg-controls.js",
+  "dependencies": {
+    "videogular": "~1.4.3"
+  }
+}

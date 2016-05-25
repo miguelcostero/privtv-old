@@ -34,6 +34,11 @@
     "angular-resource": "^1.5.5",
     "angular-route": "^1.5.5",
     "underscore": "^1.8.3",
-    "video.js": "^5.10.2"
+    "videogular": "^1.4.3",
+    "videogular-themes-default": "^1.4.3",
+    "videogular-controls": "^1.4.3",
+    "videogular-buffering": "^1.4.3",
+    "videogular-overlay-play": "^1.4.3",
+    "videogular-poster": "^1.4.3"
   }
 }

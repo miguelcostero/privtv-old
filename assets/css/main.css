@@ -306,7 +306,7 @@ a:link {
   border-color: rgb(2,61,16);
 }
 
-.video-player {
+section.video-player {
   position: fixed;
   left: 0;
   top: 0;
@@ -314,48 +314,30 @@ a:link {
   height: 100%;
 }
 
-#player {
-  position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
-  margin: auto;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+section.video-player section.controls {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    width: 48px;
+    z-index: 5;
+    text-align: center;
+    color: white;
 }
 
-.video-controls {
-   position: absolute;
-   width: 50px;
-   height: 20px;
-   cursor: pointer;
-   background-color: #FFF;
-   border: 1px solid #000;
+section.video-player section.controls span {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 48px;
+  padding-left: 2px;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  transition: background-color .35s;
+  border-radius: 3px;
+  margin-bottom: 10px;
 }
 
-#play-btn {
-   left: 5px;
-}
-
-#pause-btn {
-   left: 5px;
-}
-
-#mute-btn {
-   left: 60px;
-}
-
-#unmute-btn {
-   left: 60px;
-}
-
-#stop-btn {
-   left: 115px;
-}
-
-#replay-btn {
-   left: 115px;
+section.video-player section.controls span:hover {
+    background-color: rgba(255, 255, 255, .25);
 }

@@ -1,14 +1,14 @@
-<div class="video-player">
-  <div ng-repeat="pelicula in pelicula">
-    <video id="player" autoplay preload="auto" controls>
-      <source ng-src="{{ pelicula.videoUrl }}" type="video/mp4">
+<section class="video-player" ng-video ng-model="interface">
 
-        <track label="Spanish" kind="subtitles" srclang="es" src="http://localhost/privtv/peliculas/1/subtitles/spanish.vtt" default>
-    </video>
+  <video vi-screen></video>
 
-    <div class="video-control">
-      <a href="#/pelicula/{{ pelicula.idPelicula }}">
-        <i class="fa fa-chevron-circle-left regresar" aria-hidden="true"></i>
-      </a>
-  </div>
-</div>
+
+  <a href="#/pelicula/{{ atras }}">
+    <i class="fa fa-chevron-circle-left regresar" aria-hidden="true"></i>
+  </a>
+
+  <section vi-controls class="controls">
+    <span vi-controls-play title="Play" class="glyphicon glyphicon-play"></span>
+    <span vi-controls-pause title="Pause" class="glyphicon glyphicon-pause"></span>
+  </section>
+</section>
