@@ -99,14 +99,39 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
 });
 
 app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulosPelicula) {
-
-  $scope.interface = {};
-
-  $scope.atras = "1";
-
-  $scope.$on('$videoReady', function videoReady() {
-    $scope.interface.options.setAutoplay(true);
-    $scope.interface.sources.add("http://localhost/privtv/peliculas/1/1.mp4");
-    console.log("cargando");
+  $scope.atras = 1;
+  peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function (data) {
+    var source = data[0].movie_source;
   });
+
+  var controller = this;
+  controller.API = null;
+
+  controller.onPlayerReady = function(API) {
+    controller.API = API;
+  };
+
+  controller.config = {
+    preload: "none",
+    sources: [
+      {src: $sce.trustAsResourceUrl("http://localhost/privtv/peliculas/1/1.mp4"), type: "video/mp4"}
+    ],
+    tracks: [
+      {
+        src: "http://localhost/privtv/peliculas/1/subtitles/spanish.vtt",
+        kind: "subtitles",
+        srclang: "es",
+        label: "Spanish",
+        default: "true"
+      }
+    ],
+    autoPlay: true,
+    theme: "./assets/components/videogular-themes-default/videogular.css",
+    plugins: {
+      controls: {
+        autoHide: true,
+        autoHideTime: 1500
+      }
+    }
+  };
 });

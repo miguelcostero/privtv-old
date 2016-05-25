@@ -16,14 +16,6 @@ body {
   max-width: 100%;
 }
 
-.regresar{
-  position: absolute;
-  font-size: 2.5em;
-  top: 20px;
-  color: white;
-  left: 20px;
-}
-
 a.go-back {
   color: white;
   -webkit-transition: all 0.2s;
@@ -314,30 +306,17 @@ section.video-player {
   height: 100%;
 }
 
-section.video-player section.controls {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    width: 48px;
-    z-index: 5;
-    text-align: center;
-    color: white;
-}
+/*
+ * boton regresar en reproductor
+ */
+ .go-back-link {
+   position: absolute;
+   top: 20px;
+   left: 20px;
+   z-index: 50;
+ }
 
-section.video-player section.controls span {
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  line-height: 48px;
-  padding-left: 2px;
-  width: 48px;
-  height: 48px;
-  font-size: 20px;
-  transition: background-color .35s;
-  border-radius: 3px;
-  margin-bottom: 10px;
-}
-
-section.video-player section.controls span:hover {
-    background-color: rgba(255, 255, 255, .25);
-}
+ .regresar{
+   font-size: 2.5em;
+   color: white;
+ }
