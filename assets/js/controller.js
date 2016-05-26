@@ -90,7 +90,7 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   }
 
   if (sesionesControl.get("usuarioLogin")) {
-    $location.path("/peliculas/usuario/"+sesionesControl.get("idUsuario"));
+    $location.path("/peliculas/");
   } else {
     $scope.usuarios = logUsuarios.getAllUsers($routeParams.email_cliente).get(function () {
       $rootScope.loading = false;
@@ -98,11 +98,8 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   }
 });
 
-app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulosPelicula) {
-  $scope.atras = 1;
-  peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function (data) {
-    var source = data[0].movie_source;
-  });
+app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulos, $location) {
+  $rootScope.loading = true;
 
   var controller = this;
   controller.API = null;
@@ -111,27 +108,62 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
     controller.API = API;
   };
 
-  controller.config = {
-    preload: "none",
-    sources: [
-      {src: $sce.trustAsResourceUrl("http://localhost/privtv/peliculas/1/1.mp4"), type: "video/mp4"}
-    ],
-    tracks: [
-      {
-        src: "http://localhost/privtv/peliculas/1/subtitles/spanish.vtt",
-        kind: "subtitles",
-        srclang: "es",
-        label: "Spanish",
-        default: "true"
-      }
-    ],
-    autoPlay: true,
-    theme: "./assets/components/videogular-themes-default/videogular.css",
-    plugins: {
-      controls: {
-        autoHide: true,
-        autoHideTime: 1500
-      }
-    }
+  controller.onCompleteVideo = function() {
+    controller.isCompleted = true;
+
+    $location.path("/pelicula/"+$routeParams.id_pelicula);            
   };
+
+  //resource para obtener datos de la pelicula
+  peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function (response) {
+    //guardamos el id de la pelicula para el bton de regresar
+    $scope.idPelicula = response[0].idPelicula;
+
+    //resource para obtener los subtitulos de la pelicula
+    subtitulos.get({}, { "id_pelicula": $scope.idPelicula }, function (subs) {
+      var sub = [];
+      var i = 0;
+
+      //recorremos la respuesta del resource con forEach
+      subs.forEach(elem => {
+        let defecto = false;
+
+        //si es la primaera iteracion ponemos como default al primer subtitulo
+        if (i === 0) {
+          defecto = true;
+        } else {
+          defecto = false;
+        }
+
+        //creamos el objeto que incluye la info de los subtitulos
+        sub[i] = {
+          src: elem.ruta,
+          kind: "captions",
+          srclang: elem.srclang,
+          label: elem.idioma,
+          default: defecto
+        };
+        i++;
+      });
+
+      //cargamos la información al reproductor
+      controller.config = {
+        preload: "auto",
+        sources: [
+          {src: $sce.trustAsResourceUrl(response[0].movie_source), type: "video/mp4"}
+        ],
+        tracks: sub,
+        autoPlay: true,
+        theme: "./assets/components/videogular-themes-default/videogular.css",
+        plugins: {
+          controls: {
+            autoHide: true,
+            autoHideTime: 1500
+          }
+        }
+      };
+
+      $rootScope.loading = false;
+    });
+  });
 });

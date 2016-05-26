@@ -5,7 +5,7 @@
           vg-tracks="controller.config.tracks">
       </vg-media>
 
-    <vg-controls vg-player-ready="controller.onPlayerReady($API)" vg-autohide="controller.config.plugins.controls.autoHide" vg-autohide-time="controller.config.plugins.controls.autoHideTime">
+    <vg-controls vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-autohide="controller.config.plugins.controls.autoHide" vg-autohide-time="controller.config.plugins.controls.autoHideTime">
       <vg-play-pause-button></vg-play-pause-button>
       <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
       <vg-scrub-bar>
@@ -22,11 +22,7 @@
     <vg-buffering></vg-buffering>
     <vg-overlay-play></vg-overlay-play>
 
-    <div class="go-back-link" ng-show="controller.API.currentState != 'play'">
-      <a href="#/pelicula/{{ atras }}">
-        <i class="fa fa-chevron-circle-left regresar" aria-hidden="true"></i>
-      </a>
-    </div>
+    <go-back-button idpelicula=idPelicula></go-back-button>
 
   </videogular>
 </section>
