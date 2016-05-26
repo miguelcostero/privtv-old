@@ -320,3 +320,26 @@ section.video-player {
    font-size: 2.5em;
    color: white;
  }
+
+ videogular div.seleccionar-subitulos {
+    display: table-cell;
+    width: 50px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+select.selector {
+	background: rgb(23, 23, 23);
+   	padding: 5px;
+   	font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
+   	border: 0;
+   	border-radius: 3px;
+   -webkit-appearance: none;
+   -webkit-transition: all 0.2s;
+   -moz-transition: all 0.2s;
+   transition: all 0.2s;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}

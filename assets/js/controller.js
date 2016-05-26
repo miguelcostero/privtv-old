@@ -100,6 +100,7 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
 
 app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulos, $location) {
   $rootScope.loading = true;
+  $scope.subactual = "";
 
   var controller = this;
   controller.API = null;
@@ -111,7 +112,7 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
   controller.onCompleteVideo = function() {
     controller.isCompleted = true;
 
-    $location.path("/pelicula/"+$routeParams.id_pelicula);            
+    $location.path("/pelicula/"+$routeParams.id_pelicula);
   };
 
   //resource para obtener datos de la pelicula
@@ -145,6 +146,19 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
         };
         i++;
       });
+
+      $scope.subtitulos = {
+        actual: null,
+        subs: sub
+      };
+
+      //metodo para cambiar subtitulos
+      controller.changeTrack = function () {
+        //desactivamos el idioma actual
+        sub[_.findKey(sub, {default: true})].default = false;
+        //activamos el solicitado
+        sub[_.findKey(sub, {srclang: $scope.subtitulos.actual})].default = true;
+      }
 
       //cargamos la información al reproductor
       controller.config = {

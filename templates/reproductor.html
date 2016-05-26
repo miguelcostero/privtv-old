@@ -16,6 +16,12 @@
         <vg-mute-button></vg-mute-button>
         <vg-volume-bar></vg-volume-bar>
       </vg-volume>
+      <div class="seleccionar-subitulos">
+        <select class="selector" ng-change="controller.changeTrack()" ng-model="subtitulos.actual">
+          <option value="">-- SUBTITLOS --</option>
+          <option ng-repeat="sub in subtitulos.subs" value="{{ sub.srclang }}">{{ sub.label }}</option>
+        </select>
+      </div>
       <vg-fullscreen-button></vg-fullscreen-button>
     </vg-controls>
 
