@@ -98,6 +98,7 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   }
 });
 
+//controlador del reproductor
 app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulos, $location) {
   $rootScope.loading = true;
   $scope.subactual = "";
