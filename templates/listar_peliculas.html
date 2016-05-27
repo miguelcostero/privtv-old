@@ -1,7 +1,7 @@
 <div class="status-bar">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-4">
         <p class="pull-left links">
           Ordenar:
           <select class="sort-by" name="sort-by" ng-model="sort" ng-change="cambio()">
@@ -14,7 +14,12 @@
           </select>
         </p>
       </div>
-      <div class="col-md-3" ng-show="logueado">
+
+      <div class="col-md-4" >
+        <img src="./assets/images/priv6.png" class="center-block logo img-responsive" width="50%" height="50%">
+      </div>
+
+      <div class="col-md-4" ng-show="logueado">
         <p class="pull-right icons">
           <i class="fa fa-user"></i>
           <i class="fa fa-cog"></i>
