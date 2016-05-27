@@ -16,6 +16,16 @@ body {
   max-width: 100%;
 }
 
+a:link {
+  text-decoration: none;
+  color: rgb(222,222,222);
+  -webkit-transition: all 0.2s;
+}
+
+a:hover {
+  color: rgb(192,192,192);
+}
+
 a.go-back {
   color: white;
   -webkit-transition: all 0.2s;
@@ -344,7 +354,38 @@ select.selector {
    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-.logo{
+.logo {
   padding: 0;
+  margin-bottom: 5px;
+}
+
+.busqueda {
+  margin:0 auto 0 auto;
+  width: 50%;
+}
+
+.campo-busqueda {
+  width: 100%;
+  margin-top: 30px;
   margin-bottom: 10px;
+}
+
+input.campo-busqueda {
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  background: none;
+  border: 2px solid #212121;
+  border-bottom: ;
+}
+
+.boton {
+  border: none;
+  background-color: transparent;
+  color: rgb(222,222,222);
+}
+
+.boton:hover {
+  color: rgb(192,192,192);
 }

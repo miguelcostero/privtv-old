@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-md-4">
         <p class="pull-left links">
-          Ordenar:
           <select class="sort-by" name="sort-by" ng-model="sort" ng-change="cambio()">
             <option value="">-- seleccione una opción --</option>
             <option value="1" ng-selected="default">populares</option>
@@ -16,14 +15,22 @@
       </div>
 
       <div class="col-md-4" >
-        <img src="./assets/images/priv6.png" class="center-block logo img-responsive" width="38%" height="38%">
+        <img src="./assets/images/priv6.png" class="center-block logo img-responsive" width="40%" height="40%">
       </div>
 
       <div class="col-md-4" ng-show="logueado">
         <p class="pull-right icons">
-          <i class="fa fa-user"></i>
+          <button type="button" ng-click="buscador.abrirBuscador()" class="boton">
+            <i class="fa fa-search"></i>
+          </button>
+          <button class="boton" type="button" id="usuario-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-user"></i>
+          </button>   
+
           <i class="fa fa-cog"></i>
-          <a ng-click="logout()" href="#"><i class="fa fa-sign-out"></i></a>
+          <button type="button" class="boton" ng-click="logout()">
+            <i class="fa fa-sign-out"></i>
+          </button>
         </p>
       </div>
     </div>
@@ -32,8 +39,13 @@
 
 <div class="container-fluid main-content">
   <div class="row">
+    <div class="col-md-12 animated" ng-show="buscador.active">
+      <div class="busqueda">
+        <input type="text" class="campo-busqueda" placeholder="Buscar por nombre de pelicula..." ng-model="buscar.nombre">
+      </div>
+    </div>
     <div>
-      <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas">
+      <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas | filter:buscar">
         <a href="#/pelicula/{{ pelicula.idPelicula }}">
           <div class="browse-movie">
             <img class="img-responsive center-block" ng-src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>

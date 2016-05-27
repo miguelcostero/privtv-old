@@ -1,7 +1,7 @@
 var app = angular.module("pritvApp");
 
 //con dataResource inyectamos la factoría
-app.controller("ListarPeliculasController", function ($scope, peliculas, generoPelicula, $rootScope, logUsuarios, logCliente, sesionesControl) {
+app.controller("ListarPeliculasController", function ($scope, $location, peliculas, generoPelicula, $rootScope, logUsuarios, logCliente, sesionesControl) {
     //datosResource lo tenemos disponible en la vista gracias a $scope
     $scope.sort = "";
     $rootScope.loading = true;
@@ -12,6 +12,7 @@ app.controller("ListarPeliculasController", function ($scope, peliculas, generoP
       logUsuarios.userChange();
       logCliente.logout();
       $rootScope.logueado = false;
+      $location.path("/");
     };
 
     var obtnerGeneros = function (pelicula) {
@@ -25,6 +26,17 @@ app.controller("ListarPeliculasController", function ($scope, peliculas, generoP
       obtnerGeneros($scope.Peliculas);
       $rootScope.loading = false;
     });
+
+    $scope.buscador = {
+      active: false,
+      abrirBuscador: function () {
+        if ($scope.buscador.active === true) {
+          $scope.buscador.active = false;
+        } else {
+          $scope.buscador.active = true;
+        }
+      }
+    }
 
     $scope.cambio = function () {
       $rootScope.loading = true;
