@@ -1,6 +1,5 @@
 var app = angular.module("pritvApp");
 
-//con dataResource inyectamos la factoría
 app.controller("ListarPeliculasController", function ($scope, $location, peliculas, generoPelicula, $rootScope, logUsuarios, logCliente, sesionesControl) {
     //datosResource lo tenemos disponible en la vista gracias a $scope
     $scope.sort = "";

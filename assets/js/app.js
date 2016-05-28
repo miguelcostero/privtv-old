@@ -1,4 +1,4 @@
-//para hacer uso de $resource debemos colocarlo al crear el modulo
+//Declaramos nuestra aplicación de AngulaJS
 angular.module("pritvApp", ["ngResource", "ngRoute", "ngSanitize",
 			"com.2fdevs.videogular",
 			"com.2fdevs.videogular.plugins.controls",
