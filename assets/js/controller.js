@@ -60,7 +60,7 @@ app.controller("loginController", function ($scope, $location, logCliente, $root
   $scope.user_form = {};
 
   if (sesionesControl.get("clienteLogin")) {
-    $location.path("/seleccionar-usuario/"+sesionesControl.get("email_cliente"));
+    $location.path("/seleccionar-usuario/"+sesionesControl.get("id_cliente"));
   } else {
     $scope.login = function() {
       $rootScope.loading = true;
@@ -103,9 +103,16 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   if (sesionesControl.get("usuarioLogin")) {
     $location.path("/peliculas/");
   } else {
-    $scope.usuarios = logUsuarios.getAllUsers($routeParams.email_cliente).get(function () {
+    $scope.usuarios = logUsuarios.getAllUsers($routeParams.id_cliente).get(function () {
       $rootScope.loading = false;
     });
+
+    if (!_.isEmpty($routeParams.id_empleado)) {
+      $scope.empleado = {
+        is_empleado: true,
+        id_empleado: $routeParams.id_empleado
+      }
+    }
   }
 });
 
