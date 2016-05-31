@@ -37,13 +37,13 @@ app.factory("directoresPelicula", function ($resource) {
 })
 
 app.factory("logCliente", function ($http, $location, sesionesControl, mensajesFlash, $rootScope) {
-    var cacheSession = function (email) {
+    var cacheSession = function (id) {
         sesionesControl.set("clienteLogin", true);
-        sesionesControl.set("email_cliente", email);
+        sesionesControl.set("id_cliente", id);
     }
     var unCacheSession = function () {
         sesionesControl.unset("clienteLogin");
-        sesionesControl.unset("email_cliente");
+        sesionesControl.unset("id_cliente");
     }
     return {
       //funcion para iniciar la sesion del cliente
@@ -60,9 +60,14 @@ app.factory("logCliente", function ($http, $location, sesionesControl, mensajesF
                 //si todo ha ido bien limpiamos los mensajes flash
                 mensajesFlash.clear();
                 //creamos la sesión con el email del cliente
-                cacheSession(email);
+                cacheSession(data[0].idCliente);
                 //redireccionamos a mostrar la lista de peliculas
-                $location.path("/seleccionar-usuario/"+email);
+
+                if (_.has(data[0], "empleado_info")) {
+                  $location.path("/seleccionar-usuario/"+data[0].idCliente+"/empleado/"+data[0].empleado_info[0].idEmpleado);
+                } else {
+                  $location.path("/seleccionar-usuario/"+data[0].idCliente);
+                }
               }
             }).error(function(error, status, headers, config) {
                 if (status == 401) {
@@ -116,16 +121,16 @@ app.factory("logUsuarios", function ($resource, sesionesControl) {
   }
 
   return {
-    getAllUsers: function (emailCliente) {
-      return $resource("http://api-privtv.rhcloud.com/getusers/:email_cliente", //la url donde queremos consumir
-          { email_cliente: emailCliente }, //aquí podemos pasar variables que queramos pasar a la consulta
+    getAllUsers: function (idCliente) {
+      return $resource("http://api-privtv.rhcloud.com/users/cliente/:id_cliente", //la url donde queremos consumir
+          { id_cliente: idCliente }, //aquí podemos pasar variables que queramos pasar a la consulta
           //a la función get le decimos el método, y, si es un array lo que devuelve
           //ponemos isArray en true
           { get: { method: "GET", isArray: true }
       })
     },
     getUser: function (idUsuario) {
-      return $resource("http://api-privtv.rhcloud.com/getuser/:id_usuario", //la url donde queremos consumir
+      return $resource("http://api-privtv.rhcloud.com/users/:id_usuario", //la url donde queremos consumir
           { id_usuario: idUsuario },
           { get: { method: "GET", isArray: true }
       })

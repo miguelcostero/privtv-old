@@ -19,13 +19,21 @@ angular.module("pritvApp", ["ngResource", "ngRoute", "ngSanitize",
         controller: "DetallesPeliculaController",
         templateUrl: "templates/detalles.html"
       })
-      .when("/seleccionar-usuario/:email_cliente", {
+      .when("/seleccionar-usuario/:id_cliente", {
+        controller: "SeleccionarUsuarioController",
+        templateUrl: "templates/seleccionar-usuario.html"
+      })
+      .when("/seleccionar-usuario/:id_cliente/empleado/:id_empleado", {
         controller: "SeleccionarUsuarioController",
         templateUrl: "templates/seleccionar-usuario.html"
       })
       .when("/reproductor/:id_pelicula", {
         controller: "ReproductorController",
         templateUrl: "templates/reproductor.html"
+      })
+      .when("/administracion", {
+        controller: "AdminController",
+        templateUrl: "templates/admin/index.html"
       })
       .otherwise("/")
   })
