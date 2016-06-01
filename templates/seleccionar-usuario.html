@@ -5,16 +5,18 @@
       <div id="select" class="col-sm-push-3 col-sm-6 well">
         <div class="row">
           <div class="col-sm-12">
-            <a href="#/peliculas" ng-repeat="usuario in usuarios" ng-click="iniciar( usuario.idUsuario )">
-              <img ng-src="{{ usuario.imagen_perfil }}" alt="{{ usuario.nickname }}" class="img-thumbnail center-block" width="100" height="100"/>
-              <p class="nickname text-center">{{ usuario.nickname }}</p>
-            </a>
-          </div>
-          <div class="" ng-if="empleado.is_empleado">
-            <a href="#/peliculas" ng-click="iniciar( empleado.id_empleado )">
-              <img src="./assets/images/nestor-big.png" alt="administración" class="img-thumbnail center-block" width="100" height="100"/>
-              <p class="nickname text-center">Administración</p>
-            </a>
+            <div ng-repeat="usuario in usuarios">
+              <a href="#/peliculas"  ng-click="iniciar( usuario.idUsuario )" class="usuarios">
+                <img ng-src="{{ usuario.imagen_perfil }}" alt="{{ usuario.nickname }}" class="img-thumbnail center-block" width="100" height="100"/>
+                <p class="nickname text-center">{{ usuario.nickname }}</p>
+              </a>
+            </div>
+            <div  ng-if="empleado.is_empleado">
+              <a href="#/peliculas" ng-click="iniciar( empleado.id_empleado )" class="usuarios">
+                <img src="./assets/images/admin.png" alt="administración" class="img-thumbnail center-block" width="100" height="100"/>
+                <p class="nickname text-center">Administración</p>
+              </a>
+            </div>
           </div>
         </div>
       </div>

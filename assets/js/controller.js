@@ -4,13 +4,21 @@ app.controller("ListarPeliculasController", function ($scope, $location, pelicul
     //datosResource lo tenemos disponible en la vista gracias a $scope
     $scope.sort = "";
     $rootScope.loading = true;
-    $rootScope.logueado = true;
+
+    if (sesionesControl.get("clienteLogin")) {
+      if (!sesionesControl.get("usuarioLogin")) {
+        $location.path("/seleccionar-usuario");
+      } else {
+        $scope.usuarios = logUsuarios.getUser(sesionesControl.get("idUsuario")).get();
+      }
+    } else {
+      $location.path("/");
+    }
 
     //info cuenta cliente
     $rootScope.logout = function () {
       logUsuarios.userChange();
       logCliente.logout();
-      $rootScope.logueado = false;
       $location.path("/");
     };
 
@@ -103,9 +111,7 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
   if (sesionesControl.get("usuarioLogin")) {
     $location.path("/peliculas/");
   } else {
-    $scope.usuarios = logUsuarios.getAllUsers($routeParams.id_cliente).get(function () {
-      $rootScope.loading = false;
-    });
+    $scope.usuarios = logUsuarios.getAllUsers($routeParams.id_cliente).get();
 
     if (!_.isEmpty($routeParams.id_empleado)) {
       $scope.empleado = {
@@ -114,6 +120,8 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
       }
     }
   }
+
+  $rootScope.loading = false;
 });
 
 //controlador del reproductor
