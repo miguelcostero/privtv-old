@@ -1,0 +1,68 @@
+<div class="status-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="pull-left">
+          <a href="#/peliculas" class="go-back">
+            <p class="texto"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</p>
+          </a>
+        </p>
+      </div>
+
+      <div class="col-md-4" >
+        <img src="./assets/images/priv6.png" class="center-block logo img-responsive" width="40%" height="40%">
+      </div>
+
+      <div class="col-md-4">
+        <div class="icons pull-right">
+
+          <div class="dropusermenu">
+            <button class="boton" type="button" id="usuarioMenu">
+              <img ng-src="{{usuario.imagen_perfil}}" alt="{{usuario.nickname}}" class="img-circle" width="25" height="25">
+              <span class="username">{{ usuario.nickname }}</span>
+              <span class="caret"></span>
+            </button>
+            <div class="user-menu">
+              <ul class="menu-li" aria-labelledby="usuarioMenu">
+                <a href=""><li><i class="fa fa-credit-card" aria-hidden="true"></i> Pagos</li></a>
+                <a href=""><li><i class="fa fa-users" aria-hidden="true"></i> Usuarios</li></a>
+                <a href="#/configuracion"><li><i class="fa fa-cog" aria-hidden="true"></i> Configuración</li></a>
+                <a href="" ng-click="cambiarUsuario()"><li><i class="fa fa-user-times" aria-hidden="true"></i> Cambiar Usuario</li></a>
+                <a href="" ng-click="logout()"><li><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</li></a>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="cliente-info">
+        <div class="row">
+          <div class="col-sm-4">
+            <img ng-src="{{usuario.imagen_perfil}}" alt="{{usuario.nickname}}" class="img-responsive img-rounded" />
+          </div>
+          <div class="col-sm-8">
+            <h5>{{cliente.nombre + " " + cliente.apellido}}</h5>
+            <p class="email">{{cliente.email}}</p>
+          </div>
+        </div>
+      </div>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a ng-href="#/configuracion/" set-parent-active>Cuenta <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+        <li><a ng-href="#/configuracion/password/" set-parent-active>Contraseña <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+        <li><a ng-href="#/configuracion/suscripcion/" set-parent-active>Suscripción <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>suscripcion</p>
+    </div>
+  </div>
+</div>

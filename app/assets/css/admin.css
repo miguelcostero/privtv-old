@@ -1,0 +1,42 @@
+#administracion .status-bar {
+  font-size: 1.5em;
+  padding-top: 8px;
+  font-family: "Montserrat", sans-serif;
+}
+
+#administracion .title {
+
+}
+
+#administracion .admin-info {
+
+}
+
+#administracion .link-icon {
+  padding-left: 10px;
+  transition: all ease-in-out .4s;
+}
+
+#administracion .link-icon:hover {
+  color: rgb(62, 164, 0);
+}
+
+#administracion .admin-user-info {
+  font-size: .8em;
+}
+
+#administracion .info:hover {
+  background-color: rgb(14, 14, 14);
+}
+
+#administracion .nav-sidebar {
+  max-width: 500px;
+}
+
+#administracion .wrap {
+  padding-top: 30px;
+}
+
+#administracion ul > li:hover {
+  background-color: #27ae60;
+}

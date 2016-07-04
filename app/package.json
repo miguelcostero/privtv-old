@@ -1,0 +1,27 @@
+{
+  "name": "PrivTV",
+  "version": "0.1.0",
+  "description": "Alquiler de peliculas en streaming por suscripcion mensual.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "peliculas",
+    "suscripcion",
+    "streaming"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelcostero/privtv.git"
+  },
+  "author": "Priv.TV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miguelcostero/privtv/issues"
+  },
+  "homepage": "https://github.com/miguelcostero/privtv#readme",
+  "dependencies": {
+    "md5": "^2.1.0"
+  }
+}

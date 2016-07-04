@@ -1,0 +1,34 @@
+<section class="video-player" ng-controller="ReproductorController as controller">
+
+  <videogular vg-theme="controller.config.theme" vg-auto-play="controller.config.autoPlay">
+      <vg-media vg-src="controller.config.sources"
+          vg-tracks="controller.config.tracks">
+      </vg-media>
+
+    <vg-controls vg-player-ready="controller.onPlayerReady($API)" vg-complete="controller.onCompleteVideo()" vg-autohide="controller.config.plugins.controls.autoHide" vg-autohide-time="controller.config.plugins.controls.autoHideTime">
+      <vg-play-pause-button></vg-play-pause-button>
+      <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      </vg-scrub-bar>
+      <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+      <vg-volume>
+        <vg-mute-button></vg-mute-button>
+        <vg-volume-bar></vg-volume-bar>
+      </vg-volume>
+      <div class="seleccionar-subitulos">
+        <select class="selector" ng-change="controller.changeTrack()" ng-model="subtitulos.actual">
+          <option value="">-- SUBTITLOS --</option>
+          <option ng-repeat="sub in subtitulos.subs" value="{{ sub.srclang }}">{{ sub.label }}</option>
+        </select>
+      </div>
+      <vg-fullscreen-button></vg-fullscreen-button>
+    </vg-controls>
+
+    <vg-buffering></vg-buffering>
+    <vg-overlay-play></vg-overlay-play>
+
+    <go-back-button idpelicula=idPelicula></go-back-button>
+
+  </videogular>
+</section>

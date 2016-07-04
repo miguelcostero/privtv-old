@@ -1,0 +1,508 @@
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
+}
+
+body {
+  background-color: rgb(23,23,23);
+  color: rgb(222,222,222);
+  font-family: "Open Sans", sans-serif;
+
+  max-width: 100%;
+}
+
+a:link {
+  text-decoration: none;
+  color: rgb(222,222,222);
+  -webkit-transition: all 0.2s;
+}
+
+a:hover {
+  color: rgb(192,192,192);
+}
+
+a.go-back {
+  color: white;
+  -webkit-transition: all 0.2s;
+}
+
+a.go-back:hover {
+  color: rgb(34,91,14);
+}
+
+.texto {
+  color: white;
+  font-size: 1.5em;
+}
+
+a.regresar-listar:link{
+  text-decoration: none;
+}
+
+a.regresar:link {
+  text-decoration: none;
+}
+
+
+select.sort-by {
+	background: rgb(23, 23, 23);
+   	padding: 5px;
+   	font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
+   	border: 0;
+   	border-radius: 3px;
+   -webkit-appearance: none;
+   -webkit-transition: all 0.2s;
+   -moz-transition: all 0.2s;
+   transition: all 0.2s;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+select.sort-by:hover {
+	background-color: rgb(33,33,33);
+}
+
+select.sort-by:active {
+	background-color: rgb(33,33,33);
+}
+
+
+.status-bar {
+  margin-top: 0em;
+  background-color: rgb(46,46,46);
+  padding-top: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+.icons {
+  padding-top: 0em;
+  font-size: 1.5em;
+}
+
+.icons i {
+  padding-right: .7em;
+}
+
+.links a {
+  font-size: 1.2em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: rgb(222,222,222);
+  font-family: "Monserrat", sans-serif;
+  font-weight: 700;
+  padding-left: .7em;
+}
+
+.links a:hover {
+  color: rgb(192,192,192);
+}
+
+/* peliculas */
+.main-content {
+  max-width: 98%;
+}
+
+.browse-movie-wrap {
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0.32em;
+  float: left;
+}
+
+.browse-movie {
+  cursor: pointer;
+  font-family: "Monserrat", sans-serif;
+  background-color: rgb(30,30,30);
+  max-width: 230px;
+  min-height: 450px;
+  padding: 10px;
+  border: .5px;
+   border-radius: 3px;
+  -webkit-appearance: none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+}
+
+.browse-movie:hover {
+  border: .5px;
+   border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.browse-movie-info {
+  max-width: 210px;
+  margin-top: 0.7em;
+}
+
+.browse-movie-title {
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+a.browse-movie-title:link {
+  text-decoration: none !important;
+  text-transform: capitalize;
+  -webkit-transition: all 0.2s;
+}
+
+a.browse-movie-title:hover {
+  color: rgb(34,91,14);
+}
+
+a.browse-movie-title:active {
+  color: rgb(34,91,14);
+}
+
+.browse-movie-tags span {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 10px;
+  margin-right: 3px;
+  font-size: .85em;
+  padding: 5px 7px;
+}
+
+.browse-movie-tags span {
+  background: #111;
+  display: inline-block;
+  color: #575656;
+  font-weight: 700;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -webkit-transition: color .15s ease-in-out;
+}
+
+.browse-movie-tags span:hover {
+  color: #777;
+}
+
+.animated {
+  opacity: 1;
+  max-height: auto;
+  overflow: hidden;
+  -webkit-transition: all 1s ease-in-out;
+}
+
+.animated.ng-hide {
+  opacity: 0;
+  max-height: 0px !important;
+  display: block !important;
+}
+
+.loading {
+  position: absolute;
+  left: 45%;
+  top: 30%;
+
+  font-size: 6em;
+  color: rgb(1,98,24);
+}
+
+/*
+ * Estilos del
+ * login
+ */
+.login-pad {
+  padding-top: 40px;
+}
+
+#login.well, #select.well {
+  background-color: rgb(30,30,30);
+  border-color: rgb(1,98,24);
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.brand-text {
+  font-size: 6em;
+  text-shadow: 5px 5px 4px rgba(0,0,0,0.3);
+}
+
+.select-pad {
+  padding-top: 150px;
+}
+
+.select-header {
+  font-size: 4em;
+  text-shadow: 5px 5px 4px rgba(0,0,0,0.3);
+}
+
+a:link {
+  text-decoration: none !important;
+}
+.nickname {
+  font-size: 1em;
+  color: rgb(212,212,212);
+  padding-top: 10px;
+}
+
+.img-top {
+  padding-top: 40px;
+}
+
+.top {
+  padding-top: 20px;
+}
+
+.nom-pelicula {
+  text-transform: capitalize;
+  font-size: 4em;
+}
+
+.pad {
+  padding-top: 30px;
+}
+
+.movie-info {
+  padding-left: 50px;
+}
+
+.movie-info-resaltar {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.movie-details {
+  background-color: rgb(28,28,28);
+}
+
+.sipnosis {
+  padding-top: 10px;
+  text-align: justify;
+}
+
+.movie-info-details {
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.movie-info-details strong {
+  font-weight: bolder;
+}
+
+.botones {
+  padding-top: 30px;
+}
+
+.btn-success {
+  background-color: rgb(1,98,24);
+  border-color: rgb(1,98,24);
+}
+
+.btn-success:hover, .btn-success:link, .btn-success:active, .btn-success:focus {
+  background-color: rgb(1,98,24);
+  border-color: rgb(1,98,24);
+}
+
+section.video-player {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * boton regresar en reproductor
+ */
+ .go-back-link {
+   position: absolute;
+   top: 20px;
+   left: 20px;
+   z-index: 50;
+ }
+
+ .regresar {
+   font-size: 2.5em;
+   color: white;
+ }
+
+ videogular div.seleccionar-subitulos {
+    display: table-cell;
+    width: 50px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+select.selector {
+	background: rgb(23, 23, 23);
+   	padding: 5px;
+   	font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 700;
+   	border: 0;
+   	border-radius: 3px;
+   -webkit-appearance: none;
+   -webkit-transition: all 0.2s;
+   -moz-transition: all 0.2s;
+   transition: all 0.2s;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.logo {
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.busqueda {
+  margin:0 auto 0 auto;
+  width: 50%;
+}
+
+.campo-busqueda {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+input.campo-busqueda {
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  background: none;
+  border: 2px solid #212121;
+  border-bottom: ;
+}
+
+.boton {
+  border: none;
+  background-color: transparent;
+  color: rgb(222,222,222);
+  margin-left: 10px;
+  padding-left: 5px;
+}
+
+.boton a:link {
+  color: rgb(222,222,222);
+}
+
+.boton a:hover {
+  color: rgb(152,149,149);
+}
+
+.boton:visited {
+  color: rgb(222,222,222);
+}
+
+.boton i {
+  padding: 0;
+}
+
+.usuarios {
+  float: left;
+  margin: 5px;
+}
+
+.dropusermenu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropusermenu:hover {
+  background-color: rgb(54,54,54);
+  padding-bottom: 5px;
+}
+
+.dropusermenu:hover .user-menu {
+    display: inline-block;
+}
+
+.dropusermenu .username {
+  font-size: .8em;
+}
+
+.user-menu {
+  font-size: .8em;
+  margin-right: 0;
+  display: none;
+  position: absolute;
+  right: 0px;
+  width: 250px;
+  z-index: 1;
+  background-color: rgb(54,54,54);
+  box-shadow: 16px 16px 16px 16px rgba(0,0,0,0.2);
+  -webkit-transition: all 0.4s;
+}
+
+.user-menu .menu-li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-menu .menu-li li {
+  width: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #CCC;
+}
+
+.user-menu .menu-li li:hover {
+  background-color: rgb(3,126,32);
+  color: #F2F0F0;
+}
+
+.user-menu .menu-li i {
+  padding-right: .5px;
+}
+
+.user-menu .menu-li a:link {
+}
+
+.boton .user-icon {
+  padding: .5px;
+}
+
+.select-genero {
+  margin-top: 20px;
+  font-size: 1em;
+  color: rgb(231,231,231);
+}
+
+.select-genero p {
+  padding-top: 0;
+  margin: 0;
+}
+
+.select-genero a {
+  color: rgb(231,231,231);
+}
+
+.select-genero a:hover {
+  color: rgb(34,91,14);
+}
+
+.alert-success {
+  background-color: rgb(34,91,14);
+  border-color: rgb(34,91,14);
+}
+
+.cliente-info {
+  background-color: rgb(20,20,20);
+  border: 1px solid rgb(6,6,6);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cliente-info .email {
+  font-size: .75em;
+}

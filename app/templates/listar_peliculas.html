@@ -1,0 +1,104 @@
+<div class="status-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <p class="pull-left links">
+          <select class="sort-by" name="sort-by" ng-model="sort" ng-change="cambio()">
+            <option value="">-- seleccione una opción --</option>
+            <option value="1" ng-selected="default">populares</option>
+            <option value="2">fecha publicación</option>
+            <option value="3">generos</option>
+            <option value="4">alfabeticamente</option>
+            <option value="5">recomendadas</option>
+          </select>
+        </p>
+      </div>
+
+      <div class="col-md-4" >
+        <img src="./assets/images/priv6.png" class="center-block logo img-responsive" width="40%" height="40%">
+      </div>
+
+      <div class="col-md-4">
+
+        <div class="icons pull-right">
+
+          <a href="" ng-click="buscador.abrirBuscador()" class="boton">
+            <i class="fa fa-search"></i>
+          </a>
+
+          <div class="dropusermenu">
+            <button class="boton" type="button" id="usuarioMenu">
+              <img ng-src="{{usuario.imagen_perfil}}" alt="{{usuario.nickname}}" class="img-circle" width="25" height="25">
+              <span class="username">{{ usuario.nickname }}</span>
+              <span class="caret"></span>
+            </button>
+            <div class="user-menu">
+              <ul class="menu-li" aria-labelledby="usuarioMenu">
+                <a href=""><li><i class="fa fa-credit-card" aria-hidden="true"></i> Pagos</li></a>
+                <a href=""><li><i class="fa fa-users" aria-hidden="true"></i> Usuarios</li></a>
+                <a href="#/configuracion"><li><i class="fa fa-cog" aria-hidden="true"></i> Configuración</li></a>
+                <a href="" ng-click="cambiarUsuario()"><li><i class="fa fa-user-times" aria-hidden="true"></i> Cambiar Usuario</li></a>
+                <a href="" ng-click="logout()"><li><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</li></a>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid main-content">
+  <div class="row">
+    <div class="col-md-12 animated" ng-show="buscador.active">
+      <div class="busqueda">
+        <input type="text" class="campo-busqueda" placeholder="Buscar por nombre de pelicula..." ng-model="buscar.nombre">
+      </div>
+    </div>
+    <div>
+      <div ng-show="generos.isActive">
+        <div class="row">
+          <div class="col-sm-2 select-genero">
+            <p ng-repeat="option in generos.datos">
+              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+              <a ng-click="segun_genero(option.nombre)" href="">{{option.nombre}}</a>
+            </p>
+          </div>
+          <div class="col-sm-10">
+            <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas | filter:buscar">
+              <a href="#/pelicula/{{ pelicula.idPelicula }}">
+                <div class="browse-movie">
+                  <img class="img-responsive center-block" ng-src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>
+                  <div class="browse-movie-info">
+                    <a href="#/pelicula/{{ pelicula.idPelicula }}" class="browse-movie-title">{{ pelicula.nombre }}</a>
+                    <div class="browse-movie-year">{{ pelicula.ano_publicacion }}</div>
+                  </div>
+                  <div class="browse-movie-tags">
+                    <span ng-repeat="genero in pelicula._generos">{{ genero.Nombre }}</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-hide="generos.isActive">
+        <div class="browse-movie-wrap" ng-repeat="pelicula in Peliculas | filter:buscar">
+          <a href="#/pelicula/{{ pelicula.idPelicula }}">
+            <div class="browse-movie">
+              <img class="img-responsive center-block" ng-src="{{ pelicula.poster }}" alt="{{ pelicula.nombre }}" width="210" height="315"/>
+              <div class="browse-movie-info">
+                <a href="#/pelicula/{{ pelicula.idPelicula }}" class="browse-movie-title">{{ pelicula.nombre }}</a>
+                <div class="browse-movie-year">{{ pelicula.ano_publicacion }}</div>
+              </div>
+              <div class="browse-movie-tags">
+                <span ng-repeat="genero in pelicula._generos">{{ genero.Nombre }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
