@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/miguelcostero/privtv#readme",
   "dependencies": {
+    "jquery": "^2.2.2",
     "md5": "^2.1.0"
   }
 }

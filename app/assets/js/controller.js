@@ -235,7 +235,7 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
         ],
         tracks: sub,
         autoPlay: true,
-        theme: "./assets/components/videogular-themes-default/videogular.css",
+        theme: "./assets/css/vendor.css",
         plugins: {
           controls: {
             autoHide: true,
@@ -297,7 +297,7 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
     };
 
     $scope.cambiar_password = function () {
-      //$rootScope.loading = true;
+      $rootScope.loading = true;
 
       var formulario = {
         old: md5($scope.editar_password.old_pass),

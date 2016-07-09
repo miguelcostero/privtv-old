@@ -5,30 +5,32 @@
     <title>Priv.TV</title>
 
     <!-- Estilos Perzonalizados, Bootstrap y Font Awesome -->
-    <link rel="stylesheet" href="./assets/components/bootstrap/custom/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <!-- build:css assets/css/vendor.css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../bower_components/videogular-themes-default/videogular.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/css/main.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/css/admin.css" media="screen" title="no title" charset="utf-8">
+    <!-- endbuild -->
 
 
     <script type="text/javascript">
-      window.$ = window.jQuery = require("./assets/components/jquery/dist/jquery.min.js");
+      window.$ = window.jQuery = require("jquery");
     </script>
-    <script src="./assets/components/underscore/underscore-min.js" charset="utf-8"></script>
-    <script src="./assets/components/lodash/dist/lodash.min.js" charset="utf-8"></script>
-    <script src="./assets/components/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/components/moment/min/moment.min.js" charset="utf-8"></script>
-    <!-- build:js scripts/vendor.js -->
-    <script src="./assets/components/angular/angular.min.js"></script>
-    <script src="./assets/components/angular-resource/angular-resource.min.js"></script>
-    <script src="./assets/components/angular-route/angular-route.min.js"></script>
-    <script src="./assets/components/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
-    <script src="./assets/components/angular-datetime/dist/datetime.js" charset="utf-8"></script>
-    <script src="./assets/components/videogular/videogular.min.js" charset="utf-8"></script>
-    <script src="./assets/components/videogular-controls/vg-controls.min.js" charset="utf-8"></script>
-    <script src="./assets/components/videogular-overlay-play/vg-overlay-play.js" charset="utf-8"></script>
-    <script src="./assets/components/videogular-buffering/vg-buffering.min.js" charset="utf-8"></script>
-    <script src="./assets/components/videogular-poster/vg-poster.min.js" charset="utf-8"></script>
+    <!-- build:jslib scripts/vendor.js -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
+    <script src="../bower_components/videogular/videogular.min.js" charset="utf-8"></script>
+    <script src="../bower_components/videogular-buffering/vg-buffering.min.js" charset="utf-8"></script>
+    <script src="../bower_components/videogular-controls/vg-controls.min.js" charset="utf-8"></script>
+    <script src="../bower_components/videogular-overlay-play/vg-overlay-play.min.js" charset="utf-8"></script>
+    <script src="../bower_components/videogular-poster/vg-poster.min.js" charset="utf-8"></script>
+    <script src="../bower_components/underscore/underscore-min.js" charset="utf-8"></script>
+    <script src="../bower_components/lodash/dist/lodash.min.js" charset="utf-8"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/moment/min/moment.min.js" charset="utf-8"></script>
     <!-- endbuild -->
 
     <!-- build:app scripts/app.js -->

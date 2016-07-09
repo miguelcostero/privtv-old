@@ -55,14 +55,24 @@
         </div>
       </div>
       <ul class="nav nav-pills nav-stacked">
-        <li><a ng-href="#/configuracion/" set-parent-active>Cuenta <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
-        <li><a ng-href="#/configuracion/password/" set-parent-active>Contraseña <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
-        <li><a ng-href="#/configuracion/suscripcion/" set-parent-active>Suscripción <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+        <li><a ng-href="#/configuracion/" ng-click="limpiar_msg()">Cuenta <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+        <li><a ng-href="#/configuracion/password/" ng-click="limpiar_msg()">Contraseña <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
+        <li><a ng-href="#/configuracion/suscripcion/" ng-click="limpiar_msg()">Suscripción <i class="fa fa-angle-right pull-right" aria-hidden="true"></i></a></li>
       </ul>
     </div>
     <div class="col-sm-9">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <p>suscripcion</p>
+      <div class="well">
+        <div class="alert alert-success alert-dismissible fade in" ng-show="msg.length > 0">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          {{msg}}
+        </div>
+
+        <h4>Contraseña <br><small>Cambia o recupera tu contraseña actual.</small></h4>
+        <hr>
+      </div>
     </div>
   </div>
 </div>

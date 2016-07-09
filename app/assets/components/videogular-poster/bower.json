@@ -1,8 +1,0 @@
-{
-  "name": "videogular-poster",
-  "version": "1.4.3",
-  "main": "./vg-poster.js",
-  "dependencies": {
-    "videogular": "~1.4.3"
-  }
-}

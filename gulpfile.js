@@ -30,6 +30,9 @@ gulp.task('copy', ['clean'], function () {
             '*.html',
             '*.css',
             'main.js',
+            './assets/fonts/**/*',
+            './assets/images/*',
+            './assets/css/**/*',
             'package.json'
         ]
     });
