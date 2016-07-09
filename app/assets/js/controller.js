@@ -264,6 +264,10 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
       $scope.msg = "";
     }
 
+    suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
+      $scope.suscripcion = data[0];
+    });
+
     cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
       $scope.cliente = data[0];
 

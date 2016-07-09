@@ -188,3 +188,10 @@ app.factory("cliente_basicos", function ($resource) {
         { update: { method: "PUT" }
       })
 })
+
+app.factory("suscripcion", function ($resource) {
+  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/suscripcion",
+      { id_cliente: "@id_cliente" },
+      { get: { method: "GET", isArray: true }
+    })
+})
