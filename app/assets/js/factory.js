@@ -197,8 +197,18 @@ app.factory("cliente_password", function ($resource) {
 })
 
 app.factory("suscripcion", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/suscripcion",
+  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/suscripcion/:id_suscripcion",
       { id_cliente: "@id_cliente" },
-      { get: { method: "GET", isArray: true }
+      { get: { method: "GET", isArray: true },
+        cambiar_plan: { method: "PATCH" }
     })
+})
+
+app.factory("planes", function ($resource) {
+  return $resource("http:/api-privtv.rhcloud.com/admin/planes/:id_plan",
+      {
+        id_plan: "@id_plan"
+      }, {
+        get: { method: "GET", isArray: true }
+      })
 })

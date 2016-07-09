@@ -249,7 +249,7 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
   });
 });
 
-app.controller("ConfigController", function ($route, $scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion) {
+app.controller("ConfigController", function ($route, $scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
   $rootScope.loading = true;
     if (sesionesControl.get("clienteLogin")) {
       if (!sesionesControl.get("usuarioLogin") || !$rootScope.usuario) {
@@ -266,6 +266,10 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
 
     suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
       $scope.suscripcion = data[0];
+    });
+
+    planes.get({}, {}, function (data) {
+      $scope.planes = data;
     });
 
     cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
@@ -295,8 +299,11 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
       };
 
       cliente_basicos.update({ id_cliente: sesionesControl.get("id_cliente") }, {datos: info}, function (data) {
-        $rootScope.loading = false;
-        $scope.msg = "Se ha actualizado correctamente sus datos.";
+        cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
+          $scope.cliente = data[0];
+          $rootScope.loading = false;
+          $scope.msg = "Se ha actualizado correctamente sus datos.";
+        });
       })
     };
 
@@ -312,13 +319,30 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
       if (formulario.new === formulario.new2) {
         if (formulario.old === $scope.cliente.password) {
           cliente_password.cambiar({ id_cliente: sesionesControl.get("id_cliente") }, {password: formulario.new}, function (data) {
-            $scope.msg = "Se ha actualizado con éxito su contraseña.";
+            cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
+              $scope.cliente = data[0];
+              $scope.msg = "Se ha actualizado con éxito su contraseña.";
+            });
           });
         } else {
           $scope.msg = "La contraseña actual es incorrecta.";
         }
       } else {
         $scope.msg = "Las nuevas contraseñas no cionciden.";
+      }
+      $rootScope.loading = false;
+    }
+
+    $scope.cambiar_plan = function (id_plan) {
+      $rootScope.loading = true;
+      if (window.confirm("¿Esta  seguro que desea cambiar su tipo de suscripción?")) {
+        suscripcion.cambiar_plan({ id_cliente: sesionesControl.get("id_cliente"), id_suscripcion: id_plan }, {}, function (data) {
+          suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
+            $scope.suscripcion = data[0];
+            $scope.msg = "Se ha cambiado su suscripción satisfactóriamente.";
+            $rootScope.loading = false;
+          });
+        })
       }
     }
 
