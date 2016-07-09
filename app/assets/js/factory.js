@@ -189,6 +189,13 @@ app.factory("cliente_basicos", function ($resource) {
       })
 })
 
+app.factory("cliente_password", function ($resource) {
+  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/password",
+        { id_cliente: "@id_cliente" },
+        { cambiar: { method: "PATCH" }
+      })
+})
+
 app.factory("suscripcion", function ($resource) {
   return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/suscripcion",
       { id_cliente: "@id_cliente" },

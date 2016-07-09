@@ -249,7 +249,7 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
   });
 });
 
-app.controller("ConfigController", function ($route, $scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos) {
+app.controller("ConfigController", function ($route, $scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion) {
   $rootScope.loading = true;
     if (sesionesControl.get("clienteLogin")) {
       if (!sesionesControl.get("usuarioLogin") || !$rootScope.usuario) {
@@ -310,9 +310,15 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
       }
 
       if (formulario.new === formulario.new2) {
-
+        if (formulario.old === $scope.cliente.password) {
+          cliente_password.cambiar({ id_cliente: sesionesControl.get("id_cliente") }, {password: formulario.new}, function (data) {
+            $scope.msg = "Se ha actualizado con éxito su contraseña.";
+          });
+        } else {
+          $scope.msg = "La contraseña actual es incorrecta.";
+        }
       } else {
-        $rootScope.mensaje = "Las nuevas contraseñas no cionciden.";
+        $scope.msg = "Las nuevas contraseñas no cionciden.";
       }
     }
 
