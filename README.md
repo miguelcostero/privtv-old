@@ -16,3 +16,5 @@ Como ejecutar:
 --------------
 
     gulp run
+
+ O también: `./node_modules/.bin/electron ./app`
