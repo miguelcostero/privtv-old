@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <div class="row">
-  <!-- algodon que hizo cesar -->
     <div class="login-pad" id="login-pad">
       <img src="./assets/images/icon.ico" alt="Priv.TV" class="center-block"  width="150" height="150">
       <h2 class="text-center brand-text">Priv.TV</h2>
@@ -14,16 +13,17 @@
         <form name="loginform" ng-submit="login()">
           <div class="form-group">
             <label for="email_login">Correo Electrónico</label>
-            <input name="email_login" id="email_login" type="email" ng-model="user_form.email" required="required" class="form-control">
+            <input name="email_login" id="email_login" type="email" ng-model="user_form.email" class="form-control" ng-required="true" aria-describedby="helpBlock">
+            <span id="helpBlock" class="help-block" ng-show="loginform.email_login.$error.email">El email introducido no es válido.</span>
           </div>
 
           <div class="form-group">
             <label for="password_login">Contraseña</label>
-            <input name="password_login" id="password_login" type="password" ng-model="user_form.password" required="required" class="form-control">
+            <input name="password_login" id="password_login" type="password" ng-model="user_form.password" class="form-control" ng-required="true" ng-minlength="8">
           </div>
 
-          <button type="submit" class="btn btn-success pull-left">Iniciar Sesión</button>
-          <a href="" class="btn btn-danger pull-right">Registrarse</a>
+          <button type="submit" class="btn btn-success pull-left" ng-disabled="loginform.$invalid">Iniciar Sesión</button>
+          <a href="#/singup" class="btn btn-danger pull-right">Registrarse</a>
         </form>
       </div>
     </div>

@@ -1,43 +1,58 @@
 //Declaramos nuestra aplicación de AngulaJS
-angular.module("pritvApp", ["ngResource", "ngRoute", "ngSanitize",
+angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
 			"com.2fdevs.videogular",
 			"com.2fdevs.videogular.plugins.controls",
 			"com.2fdevs.videogular.plugins.overlayplay",
       "com.2fdevs.videogular.plugins.buffering",
 			"com.2fdevs.videogular.plugins.poster"])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when("/", {
-        controller: "loginController",
-        templateUrl: "templates/login.html"
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state("login", {
+        url: "/",
+        templateUrl: "templates/login.html",
+        controller: "loginController"
       })
-      .when("/peliculas", {
-        controller: "ListarPeliculasController",
-        templateUrl: "templates/listar_peliculas.html"
-      })
-      .when("/pelicula/:id_pelicula", {
-        controller: "DetallesPeliculaController",
-        templateUrl: "templates/detalles.html"
-      })
-      .when("/seleccionar-usuario/:id_cliente", {
+      .state("users-login", {
+        url: "/seleccionar-usuario/:id_cliente",
         controller: "SeleccionarUsuarioController",
         templateUrl: "templates/seleccionar-usuario.html"
       })
-      .when("/reproductor/:id_pelicula", {
+      .state("movies", {
+        url: "/peliculas",
+        controller: "ListarPeliculasController",
+        templateUrl: "templates/listar_peliculas.html"
+      })
+      .state("movies-details", {
+        url: "/pelicula/:id_pelicula",
+        controller: "DetallesPeliculaController",
+        templateUrl: "templates/detalles.html"
+      })
+      .state("player", {
+        url: "/reproductor/:id_pelicula",
         controller: "ReproductorController",
         templateUrl: "templates/reproductor.html"
       })
-      .when("/configuracion", {
+      .state("config", {
+        url: "/configuracion",
         controller: "ConfigController",
         templateUrl: "templates/admin/index.html"
       })
-      .when("/configuracion/password", {
-        controller: "ConfigController",
+      .state("config.basico", {
+        url: "/basico",
+        templateUrl: "templates/admin/basico.html"
+      })
+      .state("config.password", {
+        url: "/password",
         templateUrl: "templates/admin/password.html"
       })
-      .when("/configuracion/suscripcion", {
-        controller: "ConfigController",
+      .state("config.suscripcion", {
+        url: "/suscripcion",
         templateUrl: "templates/admin/suscripcion.html"
       })
-      .otherwise("/")
+      .state("SingUp", {
+        url: "/singup",
+        controller: "SingUpController",
+        templateUrl: "templates/singup/index.html"
+      })
+    $urlRouterProvider.otherwise("/");
   })

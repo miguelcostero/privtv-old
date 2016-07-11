@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../bower_components/videogular-themes-default/videogular.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/css/main.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./assets/css/admin.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="./assets/css/singup.css" media="screen" title="no title" charset="utf-8">
     <!-- endbuild -->
 
 
@@ -20,7 +21,7 @@
     <!-- build:jslib scripts/vendor.js -->
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.min.js" charset="utf-8"></script>
     <script src="../bower_components/videogular/videogular.min.js" charset="utf-8"></script>
     <script src="../bower_components/videogular-buffering/vg-buffering.min.js" charset="utf-8"></script>
@@ -38,6 +39,7 @@
     <script src="./assets/js/controller.js"></script>
     <script src="./assets/js/factory.js"></script>
     <script src="./assets/js/directives.js" charset="utf-8"></script>
+    <script src="./assets/js/singup/controller.js" charset="utf-8"></script>
     <!-- endbuild -->
 
   </head>
@@ -46,6 +48,6 @@
       <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
       <span class="sr-only">Cargando...</span>
     </div>
-    <div ng-view ng-hide="loading" class="animated"></div>
+    <div ui-view ng-hide="loading" class="animated"></div>
   </body>
 </html>

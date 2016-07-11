@@ -82,7 +82,7 @@ app.controller("ListarPeliculasController", function ($scope, $location, pelicul
     }
 });
 
-app.controller("loginController", function ($scope, $location, logCliente, $rootScope, sesionesControl) {
+app.controller("loginController", function ($scope, $rootScope, $location, logCliente, $rootScope, sesionesControl) {
   $scope.user_form = {};
 
   if (sesionesControl.get("clienteLogin")) {
@@ -95,7 +95,7 @@ app.controller("loginController", function ($scope, $location, logCliente, $root
   }
 });
 
-app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParams, $rootScope, $location, peliculas, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl, reproducciones) {
+app.controller("DetallesPeliculaController", function ($scope, $sce, $stateParams, $rootScope, $location, peliculas, generoPelicula, actoresPelicula, directoresPelicula, sesionesControl, reproducciones) {
   $rootScope.loading = true;
 
   if (sesionesControl.get("clienteLogin")) {
@@ -107,14 +107,14 @@ app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParam
   }
 
   $scope.agregar_vista = function () {
-    reproducciones.post({ "id_pelicula":$routeParams.id_pelicula }, { datos: {
+    reproducciones.post({ "id_pelicula":$stateParams.id_pelicula }, { datos: {
         id_usuario: sesionesControl.get("idUsuario"),
         id_cliente: sesionesControl.get("id_cliente")
       }
    })
   }
 
-  peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function (data) {
+  peliculas.get({}, { "id_pelicula":$stateParams.id_pelicula }, function (data) {
     $scope.pelicula = data[0];
     var obtnerGeneros = function (id) {
         return generoPelicula.get({}, { "id_pelicula":id });
@@ -133,10 +133,10 @@ app.controller("DetallesPeliculaController", function ($scope, $sce, $routeParam
   });
 });
 
-app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $rootScope, logCliente, logUsuarios, $location, sesionesControl) {
+app.controller("SeleccionarUsuarioController", function ($scope, $stateParams, $rootScope, logCliente, logUsuarios, $location, sesionesControl) {
   $rootScope.loading = true;
 
-  $scope.usuarios = logUsuarios.getAllUsers($routeParams.id_cliente).get(function () {
+  $scope.usuarios = logUsuarios.getAllUsers($stateParams.id_cliente).get(function () {
     $rootScope.loading = false;
   });
 
@@ -159,13 +159,13 @@ app.controller("SeleccionarUsuarioController", function ($scope, $routeParams, $
         $location.path("/seleccionar-usuario/"+sesionesControl.get("id_cliente"));
       }
 
-      $location.path("/peliculas/");
+      $location.path("/peliculas");
     });
   }
 });
 
 //controlador del reproductor
-app.controller("ReproductorController", function ($scope, $routeParams, $rootScope, peliculas, $sce, subtitulos, $location) {
+app.controller("ReproductorController", function ($scope, $stateParams, $rootScope, peliculas, $sce, subtitulos, $location) {
   $rootScope.loading = true;
   $scope.subactual = "";
 
@@ -179,11 +179,11 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
   controller.onCompleteVideo = function() {
     controller.isCompleted = true;
 
-    $location.path("/pelicula/"+$routeParams.id_pelicula);
+    $location.path("/pelicula/"+$stateParams.id_pelicula);
   };
 
   //resource para obtener datos de la pelicula
-  peliculas.get({}, { "id_pelicula":$routeParams.id_pelicula }, function (response) {
+  peliculas.get({}, { "id_pelicula":$stateParams.id_pelicula }, function (response) {
     //guardamos el id de la pelicula para el bton de regresar
     $scope.idPelicula = response[0].idPelicula;
 
@@ -249,7 +249,7 @@ app.controller("ReproductorController", function ($scope, $routeParams, $rootSco
   });
 });
 
-app.controller("ConfigController", function ($route, $scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
+app.controller("ConfigController", function ($scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
   $rootScope.loading = true;
     if (sesionesControl.get("clienteLogin")) {
       if (!sesionesControl.get("usuarioLogin") || !$rootScope.usuario) {
@@ -322,6 +322,9 @@ app.controller("ConfigController", function ($route, $scope, $timeout, $rootScop
             cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
               $scope.cliente = data[0];
               $scope.msg = "Se ha actualizado con éxito su contraseña.";
+              document.getElementById("old_pass").value = "";
+              document.getElementById("new_pass").value = "";
+              document.getElementById("new_pass_confirm").value = "";
             });
           });
         } else {
