@@ -10,11 +10,12 @@ Como instalar:
  2. Acceder a la carpeta del proyecto.
  2. Instalar dependencias globales: `npm install -g gulp bower`
  3. Instalar dependencias locales: `npm install`
- 4. Instalar dependencias de Priv.TV: `bower install`
 
 Como ejecutar:
 --------------
 
     gulp run
 
- O también: `./node_modules/.bin/electron ./app`
+ O también: 
+ 
+     ./node_modules/.bin/electron ./app
