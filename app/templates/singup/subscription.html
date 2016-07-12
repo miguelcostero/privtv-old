@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-12">
+
+    <div class="row">
+
+      <div class="col-md-4 text-center" ng-repeat="plan in planes">
+        <div class="panel panel-success panel-pricing">
+          <label for="{{plan.id_tipo_suscripcion}}" class="planes_label">
+            <div class="panel-heading">
+              <h3>{{plan.nombre}}</h3>
+            </div>
+            <div class="panel-body text-center">
+              <p><strong>{{plan.monto_mensual | currency:"Bs. ":2}}</strong></p>
+            </div>
+            <div class="description text-center">
+              <p>{{plan.descripcion}}</p>
+              <p>Usuarios: {{plan.num_usuarios}}</p>
+            </div>
+          </label>
+          <div class="panel-footer">
+            <input type="radio" name="subscription" id="{{plan.id_tipo_suscripcion}}" ng-value="plan.id_tipo_suscripcion" ng-model="formData.subscription" ng-required="true">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="botones">
+      <div class="pull-right">
+        <a ui-sref="singup.payment" class="btn btn-success" ng-disabled="singup.$invalid">Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="pull-left">
+        <a ui-sref="singup.profile" class="btn btn-link"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</a>
+      </div>
+    </div>
+  </div>
+</div>

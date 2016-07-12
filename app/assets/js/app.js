@@ -49,10 +49,30 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
         url: "/suscripcion",
         templateUrl: "templates/admin/suscripcion.html"
       })
-      .state("SingUp", {
+      .state("singup", {
         url: "/singup",
         controller: "SingUpController",
         templateUrl: "templates/singup/index.html"
+      })
+      .state("singup.profile", {
+        url: "/profile",
+        templateUrl: "templates/singup/profile.html"
+      })
+      .state("singup.subscription", {
+        url: "/subscription",
+        templateUrl: "templates/singup/subscription.html"
+      })
+      .state("singup.payment", {
+        url: "/payment",
+        templateUrl: "templates/singup/payment.html"
+      })
+      .state("singup.user", {
+        url: "/user",
+        templateUrl: "templates/singup/user.html"
+      })
+      .state("singup.final", {
+        url: "/final",
+        templateUrl: "templates/singup/final.html"
       })
     $urlRouterProvider.otherwise("/");
   })

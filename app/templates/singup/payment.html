@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-xs-6">
+    <label for="tipo">
+      Tipo de tarjeta
+    </label>
+    <select class="input select" name="tipo" id="tipo" ng-model="formData.payment.tipo" ng-required="true" autocomplete="off">
+      <option value="visa">Visa</option>
+      <option value="mastercard">Master Card</option>
+    </select>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-6">
+    <label for="card">
+      Numero de tarjeta
+    </label>
+    <input type="number" ng-required="true" autocomplete="off" id="card" name="card" class="input" ng-model="formData.payment.card" ng-maxlength="16" ng-minlength="16" />
+  </div>
+  <div class="col-xs-6">
+    <label for="cvv">
+      Código de seguridad
+    </label>
+    <input type="number" ng-required="true" autocomplete="off" id="cvv" name="cvv" class="input" ng-model="formData.payment.cvv" ng-maxlength="3" ng-minlength="3"/>
+  </div>
+</div>
+
+<br>
+
+<p class="texto">Fecha de Vencimiento</p>
+<div class="row">
+  <div class="col-xs-4">
+    <label for="mes">
+      Mes
+    </label>
+    <select class="input select" name="mes" id="mes" ng-model="formData.payment.vencimiento.mes" ng-required="true" autocomplete="off">
+      <option value="1">Enero</option>
+      <option value="3">Febrero</option>
+      <option value="4">Marzo</option>
+      <option value="5">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>
+  </div>
+  <div class="col-xs-2">
+    <label for="ano">
+      Año
+    </label>
+    <select class="input select" name="ano" id="ano" ng-model="formData.payment.vencimiento.ano" ng-required="true" autocomplete="off">
+      <option ng-repeat="opt in years" value="{{opt.year}}">{{opt.year}}</option>
+    </select>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="botones">
+      <div class="pull-right">
+        <a ui-sref="singup.user" class="btn btn-success" ng-disabled="singup.$invalid">Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="pull-left">
+        <a ui-sref="singup.subscription" class="btn btn-link"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</a>
+      </div>
+    </div>
+  </div>
+</div>
