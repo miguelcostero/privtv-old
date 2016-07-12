@@ -331,7 +331,7 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
           $scope.msg = "La contraseña actual es incorrecta.";
         }
       } else {
-        $scope.msg = "Las nuevas contraseñas no cionciden.";
+        $scope.msg = "Las nuevas contraseñas no coinciden.";
       }
       $rootScope.loading = false;
     }
