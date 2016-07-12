@@ -311,9 +311,9 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
       $rootScope.loading = true;
 
       var formulario = {
-        old: md5($scope.editar_password.old_pass),
-        new: md5($scope.editar_password.new_pass),
-        new2: md5($scope.editar_password.new_pass_confirm)
+        old: md5(document.getElementById("old_pass").value),
+        new: md5(document.getElementById("new_pass").value),
+        new2: md5(document.getElementById("new_pass_confirm").value)
       }
 
       if (formulario.new === formulario.new2) {
