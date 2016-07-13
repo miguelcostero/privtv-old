@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div ng-show="true">
+      <h3>Resumen de registro</h3>
+      <hr>
+      <div class="row">
+        <div class="col-xs-6">
+          <h4>Datos de cliente</h4>
+          <p><strong>NOMBRE:</strong> {{formData.profile.nombre}}</p>
+          <p><strong>APELLIDO:</strong> {{formData.profile.apellido}}</p>
+          <p><strong>CORREO ELECTRÓNICO:</strong> {{formData.profile.email}}</p>
+          <p><strong>FECHA DE NACIMIENTO:</strong> {{formData.profile.fecha_nacimiento | date:'dd-MM-yyyy'}}</p>
+          <p><strong>DIRECCIÓN:</strong> {{formData.profile.direccion}}</p>
+          <p><strong>TELÉFONO:</strong> {{formData.profile.telefono}}</p>
+        </div>
+        <div class="col-xs-6">
+          <h4>Suscripción</h4>
+          <p><strong>ID:</strong> {{formData.subscription.id_tipo_suscripcion}}</p>
+          <p><strong>NOMBRE:</strong> {{formData.subscription.nombre}}</p>
+          <p><strong>DESCRIPCIÓN:</strong> {{formData.subscription.descripcion}}</p>
+          <p><strong>MONTO:</strong> {{formData.subscription.monto_mensual | currency:"Bs. ":2}} / por mes.</p>
+          <p><strong>NÚMERO DE USUARIOS:</strong> {{formData.subscription.num_usuarios}}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <h4>Datos de pago</h4>
+          <p><strong>TIPO DE TARJETA:</strong> {{formData.payment.tipo}}</p>
+          <p><strong>NÚMERO DE TARJETA:</strong> {{formData.payment.card}}</p>
+          <p><strong>CÓDIGO DE SEGURIDAD:</strong> {{formData.payment.cvv}}</p>
+          <p><strong>FECHA DE VENCIMIENTO:</strong> {{formData.payment.vencimiento.mes + "/" + formData.payment.vencimiento.ano}}</p>
+        </div>
+        <div class="col-xs-6">
+          <div class="row">
+            <div class="col-xs-6">
+              <h4>Usuario</h4>
+              <p><strong>NOMBRE DE USUARIO:</strong> {{formData.user.nickname}}</p>
+              <p><strong>BIOGRAFÍA:</strong> {{formData.user.bio}}</p>
+            </div>
+            <div class="col-xs-6">
+              <img ng-src="{{formData.user.imagen}}" class="img-responsive img-thumbnail" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exito" ng-show="otro_beta">
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+      <h3>Registro completado con éxito</h3>
+      <a ui-sref="login" class="final-link">Inicie Sesión</a>
+    </div>
+  </div>
+</div>

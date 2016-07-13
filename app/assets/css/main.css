@@ -412,11 +412,11 @@ input.campo-busqueda {
 .dropusermenu {
   position: relative;
   display: inline-block;
+  padding-bottom: 5px;
 }
 
 .dropusermenu:hover {
   background-color: rgb(54,54,54);
-  padding-bottom: 5px;
 }
 
 .dropusermenu:hover .user-menu {

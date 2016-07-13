@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-
+    <h3>Selección el plan de su preferencia</h3>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
     <div class="row">
 
       <div class="col-md-4 text-center" ng-repeat="plan in planes">
@@ -18,7 +23,7 @@
             </div>
           </label>
           <div class="panel-footer">
-            <input type="radio" name="subscription" id="{{plan.id_tipo_suscripcion}}" ng-value="plan.id_tipo_suscripcion" ng-model="formData.subscription" ng-required="true">
+            <input type="radio" name="subscription" id="{{plan.id_tipo_suscripcion}}" ng-value="plan" ng-model="formData.subscription" ng-required="true">
           </div>
         </div>
       </div>

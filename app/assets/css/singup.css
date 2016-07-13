@@ -36,7 +36,8 @@
 .tab-group li a {
   display: block;
   text-decoration: none;
-  padding: 15px;
+  padding: 10px;
+  margin-bottom: -10px;
   background: rgba(160, 179, 176, 0.25);
   color: rgb(255, 255, 255);
   font-size: 20px;
@@ -133,4 +134,19 @@
 .texto {
   font-size: 1.2em;
   font-weight: lighter;
+}
+
+.exito {
+  text-align: center;
+}
+
+.exito i {
+  font-size: 15em;
+    color: rgb(0,121,34);
+  -webkit-transition: all .3s ease-in-out;
+}
+
+.exito .final-link {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
 }
