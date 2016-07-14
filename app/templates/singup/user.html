@@ -21,6 +21,12 @@
       <input type="file" name="img_perfil" fileread="formData.user.imagen" class="input" id="img_perfil" ng-required="true" accept="image/*">
     </div>
 
+    <div class="campo">
+      <label for="gustos">Seleccione sus gustos favoritos</label>
+      <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="input select">
+        <option ng-repeat="opt in generos" value="{{opt}}">{{opt.nombre}}</option>
+      </select>
+    </div>
 
     <div class="botones">
       <div class="pull-right">
