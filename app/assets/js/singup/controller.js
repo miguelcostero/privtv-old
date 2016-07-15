@@ -2,6 +2,13 @@ var app = angular.module("pritvApp");
 
 app.controller("SingUpController", function($scope, $rootScope, planes, generos) {
     $scope.formData = {};
+    $scope.formValidate = {
+        "profile": false,
+        "user": false, 
+        "subscription": false,
+        "payment": false
+    }
+
     $scope.years = [];
 
     planes.get({}, {}, function(data) {
@@ -18,4 +25,12 @@ app.controller("SingUpController", function($scope, $rootScope, planes, generos)
         $scope.years.push({ "year": i });
     }
 
+    $scope.comprobarProfile = function () {
+        
+    }
+
+    //PROCESAR FORMULARIO DE REGISTRO
+    $scope.processForm = function () {
+        
+    }
 });

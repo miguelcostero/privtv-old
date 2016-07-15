@@ -23,14 +23,15 @@
 
     <div class="campo">
       <label for="gustos">Seleccione sus gustos favoritos</label>
-      <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="input select">
-        <option ng-repeat="opt in generos" value="{{opt}}">{{opt.nombre}}</option>
+      <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="input select" ng-options="opt.nombre for opt in generos">
       </select>
     </div>
 
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.final" class="btn btn-success" ng-disabled="singup.$invalid">Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+        <a ui-sref="singup.final" class="btn btn-success" ng-disabled="singup.$invalid">
+          Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+        </a>
       </div>
       <div class="pull-left">
         <a ui-sref="singup.payment" class="btn btn-link"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</a>

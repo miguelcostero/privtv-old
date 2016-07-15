@@ -37,7 +37,10 @@
               <h4>Usuario</h4>
               <p><strong>NOMBRE DE USUARIO:</strong> {{formData.user.nickname}}</p>
               <p><strong>BIOGRAFÍA:</strong> {{formData.user.bio}}</p>
-              <p><strong>GUSTOS</strong> {{formData.user.gustos.nombre}}</p>
+              <p><strong>GUSTOS:</strong></p>
+              <ul>
+                <li ng-repeat="gusto in formData.user.gustos">{{gusto.nombre}}</li>
+              </ul>
             </div>
             <div class="col-xs-6">
               <img ng-src="{{formData.user.imagen}}" class="img-responsive img-thumbnail" />
@@ -46,7 +49,16 @@
         </div>
       </div>
 
-    <!--  <button type="submit" class="btn btn-lg btn-success" ng-disabled="formValidate">Crear Registro</button> -->
+
+      
+      <div class="text-center">
+        <button type="submit" class="btn btn-success" ng-disabled="formValidate.profile; formValidate.user; formValidate.subscription; formValidate.payment">Procesar Registro</button><br>
+        {{formValidate.profile}} <br>
+        {{formValidate.user}} <br>
+        {{formValidate.subscription}} <br>
+        {{formValidate.payment}}
+      </div>
+     
 
     </div>
 

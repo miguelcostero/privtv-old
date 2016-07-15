@@ -59,7 +59,9 @@
 
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.subscription" class="btn btn-success" ng-disabled="singup.$invalid">Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+        <a ui-sref="singup.subscription" class="btn btn-success" ng-disabled="singup.$invalid" ng-click="!singup.$invalid ">
+          Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+        </a>
       </div>
       <div class="pull-left">
         <a ui-sref="login" class="btn btn-link"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</a>
