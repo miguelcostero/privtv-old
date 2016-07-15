@@ -4,7 +4,7 @@ app.controller("SingUpController", function($scope, $rootScope, planes, generos)
     $scope.formData = {};
     $scope.formValidate = {
         "profile": false,
-        "user": false, 
+        "user": false,
         "subscription": false,
         "payment": false
     }
@@ -26,11 +26,11 @@ app.controller("SingUpController", function($scope, $rootScope, planes, generos)
     }
 
     $scope.comprobarProfile = function () {
-        
+
     }
 
     //PROCESAR FORMULARIO DE REGISTRO
     $scope.processForm = function () {
-        
+        //aquí va algo
     }
 });
