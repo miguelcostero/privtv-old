@@ -5,7 +5,7 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.tipo.$invalid && !resgistro.tipo.$pristine }">
     <label for="tipo">
       Tipo de tarjeta
     </label>
@@ -13,21 +13,30 @@
       <option value="Visa">Visa</option>
       <option value="Master Card">Master Card</option>
     </select>
+    <p ng-show="resgistro.tipo.$invalid && !resgistro.tipo.$pristine" class="help-block">Seleccione su tipo de tarjeta de crédito.</p>
   </div>
 </div>
 <br>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.card.$invalid && !resgistro.card.$pristine }">
     <label for="card">
-      Numero de tarjeta
+      Número de tarjeta
     </label>
-    <input type="number" ng-required="true" autocomplete="off" id="card" name="card" class="input" ng-model="formData.payment.card" ng-maxlength="16" ng-minlength="16" />
+    <input type="number" ng-required="true" autocomplete="off" id="card" name="card" class="input" ng-model="formData.payment.card" ng-maxlength="19" ng-minlength="15" />
+    <div ng-show="resgistro.card.$invalid && !resgistro.card.$pristine">
+      <div ng-messages="resgistro.card.$error">
+        <p ng-message="required"  class="help-block">Este campo es necesario.</p>
+        <p ng-message="minlength"  class="help-block">Debe contener mínimo 15 digitos.</p>
+        <p ng-message="maxlength"  class="help-block">Debe contener máximo 19 dígitos.</p>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.cvv.$invalid && !resgistro.cvv.$pristine }">
     <label for="cvv">
       Código de seguridad
     </label>
     <input type="number" ng-required="true" autocomplete="off" id="cvv" name="cvv" class="input" ng-model="formData.payment.cvv" ng-maxlength="3" ng-minlength="3"/>
+    <p ng-show="resgistro.cvv.$invalid && !resgistro.cvv.$pristine" class="help-block">Ingrese un código de seguridad válido.</p>
   </div>
 </div>
 
@@ -35,7 +44,7 @@
 
 <p class="texto">Fecha de Vencimiento</p>
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-4" ng-class="{ 'has-error' : resgistro.mes.$invalid && !resgistro.mes.$pristine }">
     <label for="mes">
       Mes
     </label>
@@ -53,14 +62,16 @@
       <option value="11">Noviembre</option>
       <option value="12">Diciembre</option>
     </select>
+    <p ng-show="resgistro.mes.$invalid && !resgistro.mes.$pristine" class="help-block">Este campo es necesario.</p>
   </div>
-  <div class="col-xs-2">
+  <div class="col-xs-2" ng-class="{ 'has-error' : resgistro.ano.$invalid && !resgistro.ano.$pristine }">
     <label for="ano">
       Año
     </label>
     <select class="input select" name="ano" id="ano" ng-model="formData.payment.vencimiento.ano" ng-required="true" autocomplete="off">
       <option ng-repeat="opt in years" value="{{opt.year}}">{{opt.year}}</option>
     </select>
+    <p ng-show="resgistro.ano.$invalid && !resgistro.ano.$pristine" class="help-block">Este campo es necesario.</p>
   </div>
 </div>
 
@@ -69,8 +80,10 @@
   <div class="col-xs-12">
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.user" class="btn btn-success" ng-disabled="singup.$invalid" ng-click="singup.$invalid || formValidate.payment = true">
+        <a ng-disabled="resgistro.$invalid" ui-sref-if="!resgistro.$invalid" ui-sref-val="singup.user" class="btn btn-success">
           Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+        </a>
+
         </a>
       </div>
       <div class="pull-left">

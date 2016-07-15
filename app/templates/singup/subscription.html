@@ -15,7 +15,7 @@
               <h3>{{plan.nombre}}</h3>
             </div>
             <div class="panel-body text-center">
-              <p><strong>{{plan.monto_mensual | currency:"Bs. ":2}}</strong></p>
+              <p><strong>{{plan.monto_mensual | currency:"Bs. ":2}} <br> <small>por mes</small></strong></p>
             </div>
             <div class="description text-center">
               <p>{{plan.descripcion}}</p>
@@ -32,7 +32,7 @@
 
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.payment" class="btn btn-success" ng-disabled="singup.$invalid">
+        <a ng-disabled="resgistro.$invalid" ui-sref-if="!resgistro.$invalid" ui-sref-val="singup.payment" class="btn btn-success">
           Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
         </a>
       </div>

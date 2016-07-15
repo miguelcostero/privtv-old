@@ -33,7 +33,7 @@
   display: table;
   clear: both;
 }
-.tab-group li a {
+.tab-group li  {
   display: block;
   text-decoration: none;
   padding: 10px;
@@ -44,15 +44,11 @@
   float: left;
   width: 20%;
   text-align: center;
-  cursor: pointer;
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
-.tab-group li a:hover {
-  background: rgb(0,121,34);
-  color: #ffffff;
-}
-.tab-group .active a {
+
+.tab-group .active  {
   background:rgb(1,98,24);
   color: #ffffff;
 }
@@ -89,6 +85,18 @@
 #singup_form .select:active {
   background: rgb(20,20,20);
   -webkit-appearance: none;
+}
+
+#singup_form .has-error .input {
+  border: 1px solid #F00;
+}
+
+#singup_form .has-error p.help-block {
+  color: #F00;
+}
+
+#singup_form .has-error label {
+  color: #F00;
 }
 
 #singup_form .campo {

@@ -50,15 +50,19 @@
       </div>
 
 
-      
-      <div class="text-center">
+
+      <div class="pull-right">
         <button type="submit" class="btn btn-success" ng-disabled="formValidate.profile; formValidate.user; formValidate.subscription; formValidate.payment">Procesar Registro</button><br>
         {{formValidate.profile}} <br>
         {{formValidate.user}} <br>
         {{formValidate.subscription}} <br>
         {{formValidate.payment}}
       </div>
-     
+
+      <div class="pull-left">
+        <a ui-sref="singup.user" class="btn btn-link"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</a>
+      </div>
+
 
     </div>
 

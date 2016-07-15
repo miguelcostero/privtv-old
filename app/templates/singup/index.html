@@ -4,19 +4,19 @@
 
     <div class="caja">
       <ul class="tab-group">
-       <li class="tab" ui-sref-active="active"><a ui-sref=".profile"><i class="fa fa-info" aria-hidden="true"></i></a></li>
-       <li class="tab" ui-sref-active="active"><a ui-sref=".subscription"><i class="fa fa-book" aria-hidden="true"></i></a></li>
-       <li class="tab" ui-sref-active="active"><a ui-sref=".payment"><i class="fa fa-credit-card" aria-hidden="true"></i></a></li>
-       <li class="tab" ui-sref-active="active"><a ui-sref=".user"><i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
-       <li class="tab" ui-sref-active="active"><a ui-sref=".final"><i class="fa fa-tasks" aria-hidden="true"></i></a></li>
+       <li ng-class="{active: $state.includes('singup.profile')}"><i class="fa fa-info" aria-hidden="true"></i></li>
+       <li ng-class="{active: $state.includes('singup.subscription')}"><i class="fa fa-book" aria-hidden="true"></i></li>
+       <li ng-class="{active: $state.includes('singup.payment')}"><i class="fa fa-credit-card" aria-hidden="true"></i></li>
+       <li ng-class="{active: $state.includes('singup.user')}"><i class="fa fa-user-plus" aria-hidden="true"></i></li>
+       <li ng-class="{active: $state.includes('singup.final')}"><i class="fa fa-tasks" aria-hidden="true"></i></li>
      </ul>
 
       <div id="singup_form">
-        <form name="singup" id="signup" ng-submit="processForm()">
+        <form name="resgistro" id="resgistro" ng-submit="processForm()">
           <div id="form-views" ui-view></div>
         </form>
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -5,31 +5,70 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.nickname.$invalid && !resgistro.nickname.$pristine }">
     <div class="campo">
       <label for="nickname">Nombre de Usuario</label>
-      <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="formData.user.nickname" class="input">
+      <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="formData.user.nickname" class="input" ng-minlength="3" ng-maxlength="12">
+      <div ng-show="resgistro.nickname.$invalid && !resgistro.nickname.$pristine">
+        <div ng-messages="resgistro.nickname.$error">
+            <p class="help-block" ng-message="required">Introduzca un nombre de usuario.</p>
+            <p class="help-block" ng-message="minlength">Nombre de usuario muy corto.</p>
+            <p class="help-block" ng-message="maxlength">Nombre de usuario muy largo.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.bio.$invalid && !resgistro.bio.$pristine }">
     <div class="campo">
       <label for="bio">Biografía</label>
-      <textarea name="bio" rows="5" cols="40" ng-model="formData.user.bio" ng-required="true" id="bio" class="input"></textarea>
+      <textarea name="bio" rows="5" cols="40" ng-model="formData.user.bio" ng-required="true" id="bio" class="input" ng-maxlength="70"></textarea>
+      <div ng-show="resgistro.bio.$invalid && !resgistro.bio.$pristine">
+        <div ng-messages="resgistro.bio.$error">
+            <p class="help-block" ng-message="required">Introduzca una biografía descriptiva.</p>
+            <p class="help-block" ng-message="maxlength">Biografía descriptiva muy larga.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.img_perfil.$invalid && !resgistro.img_perfil.$pristine }">
     <div class="campo">
       <label for="img_perfil">Imagen de perfil</label>
       <input type="file" name="img_perfil" fileread="formData.user.imagen" class="input" id="img_perfil" ng-required="true" accept="image/*">
+      <div ng-show="resgistro.img_perfil.$invalid && !resgistro.img_perfil.$pristine">
+        <div ng-messages="resgistro.img_perfil.$error">
+            <p class="help-block" ng-message="required">Seleccione una imagen de perfil.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.gustos.$invalid && !resgistro.gustos.$pristine }">
     <div class="campo">
       <label for="gustos">Seleccione sus gustos favoritos</label>
-      <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="input select" ng-options="opt.nombre for opt in generos">
+      <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="input select" ng-options="opt.nombre for opt in generos" required>
       </select>
+      <div ng-show="resgistro.gustos.$invalid && !resgistro.gustos.$pristine">
+        <div ng-messages="resgistro.gustos.$error">
+            <p class="help-block" ng-message="required">Seleccione al menos un gusto.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-xs-12">
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.final" class="btn btn-success" ng-disabled="singup.$invalid">
+        <a class="btn btn-success" ng-disabled="resgistro.$invalid" ui-sref-if="!resgistro.$invalid" ui-sref-val="singup.final">
           Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
         </a>
       </div>

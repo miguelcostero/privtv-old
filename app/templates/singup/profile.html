@@ -5,61 +5,115 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.nombre.$invalid && !resgistro.nombre.$pristine }">
     <label for="nombre">
       Nombre
     </label>
     <input type="text" ng-required="true" autocomplete="off" id="nombre" name="nombre" class="input" ng-model="formData.profile.nombre" />
+    <p ng-show="resgistro.nombre.$invalid && !resgistro.nombre.$pristine" class="help-block">Tu nombre es necesario.</p>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.apellido.$invalid && !resgistro.apellido.$pristine }">
     <label for="apellido">
       Apellido
     </label>
     <input type="text" ng-required="true" autocomplete="off" id="apellido" name="apellido" class="input" ng-model="formData.profile.apellido" />
+    <p ng-show="resgistro.apellido.$invalid && !resgistro.apellido.$pristine" class="help-block">Tu apellido es necesario.</p>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.email.$invalid && !resgistro.email.$pristine }">
     <div class="campo">
       <label for="email">
         Correo Electrónico
       </label>
-      <input type="email" ng-required="true" autocomplete="off" id="email" name="email" class="input" ng-model="formData.profile.email" />
+      <input type="email" ng-required="true" autocomplete="off" id="email" name="email" class="input" ng-model="formData.profile.email" unique-email ng-model-options="{ debounce: 100 }" />
+      <div ng-if="resgistro.email.$pending.unique">Validando....</div>
+      <div ng-show="resgistro.email.$invalid && !resgistro.email.$pristine">
+        <div ng-messages="resgistro.email.$error">
+            <p class="help-block" ng-message="email">Ingrese un correo electrónico válido.</p>
+            <p class="help-block" ng-message="unique">Este correo electrónico esta siendo utilizado actualmente.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.password.$invalid && !resgistro.password.$pristine }">
     <div class="campo">
       <label for="password">
         Contraseña
       </label>
-      <input type="password" ng-required="true" autocomplete="off" id="password" name="password" class="input" ng-model="formData.profile.password" />
+      <input type="password" ng-required="true" autocomplete="off" id="password" name="password" class="input" ng-model="formData.profile.password" ng-minlength="8"/>
+      <div ng-show="resgistro.password.$invalid && !resgistro.password.$pristine">
+        <div ng-messages="resgistro.password.$error">
+            <p class="help-block" ng-message="required">Introduzca una contraseña válida.</p>
+            <p class="help-block" ng-message="minlength">La contraseña es demasiado corta.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.confirm_password.$invalid && !resgistro.confirm_password.$pristine }">
     <div class="campo">
       <label for="confirm_password">
         Confirmar contraseña
       </label>
-      <input type="password" ng-required="true" autocomplete="off" id="confirm_password" name="confirm_password" class="input" ng-model="formData.profile.confirm_password" />
+      <input type="password" ng-required="true" autocomplete="off" id="confirm_password" name="confirm_password" class="input" ng-model="formData.profile.confirm_password" compare-to="formData.profile.password" />
+      <p ng-show="resgistro.confirm_password.$invalid && !resgistro.confirm_password.$pristine" class="help-block">Las contraseñas no coinciden.</p>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.fecha_nacimiento.$invalid && !resgistro.fecha_nacimiento.$pristine }">
     <div class="campo">
       <label for="fecha_nacimiento">
         Fecha de nacimiento
       </label>
-      <input type="date" ng-required="true" autocomplete="off" id="fecha_nacimiento" name="fecha_nacimiento" class="input" ng-model="formData.profile.fecha_nacimiento" />
+      <input type="date" ng-required="true" autocomplete="off" id="fecha_nacimiento" name="fecha_nacimiento" class="input" ng-model="formData.profile.fecha_nacimiento" ng-max="fecha_maxima"/>
+      <p ng-show="resgistro.fecha_nacimiento.$invalid && !resgistro.fecha_nacimiento.$pristine" class="help-block">Debe ser mayor de 18 años.</p>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.telefono.$invalid && !resgistro.telefono.$pristine }">
     <div class="campo">
       <label for="telefono">
         Teléfono
       </label>
-      <input type="text" ng-required="true" autocomplete="off" id="telefono" name="telefono" class="input" ng-model="formData.profile.telefono" />
+      <input type="number" ng-required="true" autocomplete="off" id="telefono" name="telefono" class="input" ng-model="formData.profile.telefono" ng-minlength="11" ng-maxlength="11" />
+      <p ng-show="resgistro.telefono.$invalid && !resgistro.telefono.$pristine" class="help-block">Ingrese un número de teléfono válido.</p>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.direccion.$invalid && !resgistro.direccion.$pristine }">
     <div class="campo">
       <label for="direccion">
         Dirección
       </label>
-      <textarea id="direccion" name="direccion" class="input" ng-model="formData.profile.direccion" rows="8" cols="40" ng-required="true"></textarea>
+      <textarea id="direccion" name="direccion" class="input" ng-model="formData.profile.direccion" rows="8" cols="40" ng-required="true" ng-minlength="20"></textarea>
+      <div ng-show="resgistro.direccion.$invalid && !resgistro.direccion.$pristine">
+        <div ng-messages="resgistro.direccion.$error">
+            <p class="help-block" ng-message="minlength">Introduzca una dirección válida.</p>
+            <p class="help-block" ng-message="required">Tu dirección es necesaria.</p>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
+
+<div class="row">
+  <div class="col-xs-12">
     <div class="botones">
       <div class="pull-right">
-        <a ui-sref="singup.subscription" class="btn btn-success" ng-disabled="singup.$invalid" ng-click="!singup.$invalid ">
+        <a ng-disabled="resgistro.$invalid" ui-sref-if="!resgistro.$invalid" ui-sref-val="singup.subscription" class="btn btn-success">
           Siguiente <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
         </a>
       </div>
