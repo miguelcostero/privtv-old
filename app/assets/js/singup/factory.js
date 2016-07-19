@@ -18,5 +18,5 @@ app.factory('isEmailAvailable', function($q, $http) {
 });
 
 app.factory('nuevoCliente', function ($resource) {
-  return $resource("http://localhost:8080/clientes/nuevo", {} , { nuevo: { method: "POST" }});
-})
+  return $resource("http://api-privtv.rhcloud.com/clientes/nuevo", {} , { nuevo: { method: "POST" }});
+});
