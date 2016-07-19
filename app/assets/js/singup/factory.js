@@ -16,3 +16,7 @@ app.factory('isEmailAvailable', function($q, $http) {
     return deferred.promise;
   }
 });
+
+app.factory('nuevoCliente', function ($resource) {
+  return $resource("http://localhost:8080/clientes/nuevo", {} , { nuevo: { method: "POST" }});
+})
