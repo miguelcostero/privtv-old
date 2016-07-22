@@ -75,5 +75,19 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
         url: "/final",
         templateUrl: "templates/singup/final.html"
       })
+      //usuarios config
+      .state("user", {
+        url: "/admin/user",
+        controller: "UserController",
+        templateUrl: "templates/user/index.html"
+      })
+      .state("user.home", {
+        url: "/home",
+        templateUrl: "templates/user/home.html"
+      })
+      .state("user.new", {
+        url: "/new", 
+        templateUrl: "templates/user/new.html"
+      })
     $urlRouterProvider.otherwise("/");
   })

@@ -1,0 +1,25 @@
+<h4>Usarios <br><small>Información general acerca de los usuarios afiliados.</small></h4>
+<hr>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>NICKNAME</th>
+      <th>BIOGRAFÍA</th>
+      <th>IMAGEN</th>
+      <th>ELIMINAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{user.nickname}}</td>
+      <td>{{user.biografia}}</td>
+      <td class=""><img ng-src="{{user.imagen_perfil}}" alt="{{user.nickname}}" class="img-circle center-block" width="80" height="80"></td>
+      <td>
+      	<br>
+        <a href="" ng-click="eliminar_usuario(user.idUsuario)" class="btn btn-danger center-block">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
