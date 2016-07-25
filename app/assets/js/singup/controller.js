@@ -13,7 +13,7 @@ app.controller("SingUpController", function($scope, $rootScope, $state, planes, 
 
     generos.get({}, {}, function (data) {
         $scope.generos = data;
-    })
+    });
 
     var myDate = new Date();
     var year = myDate.getFullYear();

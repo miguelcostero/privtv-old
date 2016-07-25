@@ -249,7 +249,7 @@ app.controller("ReproductorController", function ($scope, $stateParams, $rootSco
   });
 });
 
-app.controller("ConfigController", function ($scope, $timeout, $rootScope, $location, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
+app.controller("ConfigController", function ($scope, $timeout, $rootScope, $location, Flash, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
   $rootScope.loading = true;
     if (sesionesControl.get("clienteLogin")) {
       if (!sesionesControl.get("usuarioLogin") || !$rootScope.usuario) {
@@ -302,7 +302,7 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
         cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
           $scope.cliente = data[0];
           $rootScope.loading = false;
-          $scope.msg = "Se ha actualizado correctamente sus datos.";
+          Flash.create('success', 'Se ha actualizado correctamente sus datos.');
         });
       })
     };
@@ -321,17 +321,17 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
           cliente_password.cambiar({ id_cliente: sesionesControl.get("id_cliente") }, {password: formulario.new}, function (data) {
             cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
               $scope.cliente = data[0];
-              $scope.msg = "Se ha actualizado con éxito su contraseña.";
+              Flash.create('success', 'Se ha actualizado con éxito su contraseña.');
               document.getElementById("old_pass").value = "";
               document.getElementById("new_pass").value = "";
               document.getElementById("new_pass_confirm").value = "";
             });
           });
         } else {
-          $scope.msg = "La contraseña actual es incorrecta.";
+          Flash.create('danger', 'La contraseña actual es incorrecta.');
         }
       } else {
-        $scope.msg = "Las nuevas contraseñas no coinciden.";
+        Flash.create('danger', 'Las nuevas contraseñas no coinciden.');
       }
       $rootScope.loading = false;
     }
@@ -342,7 +342,7 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
         suscripcion.cambiar_plan({ id_cliente: sesionesControl.get("id_cliente"), id_suscripcion: id_plan }, {}, function (data) {
           suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
             $scope.suscripcion = data[0];
-            $scope.msg = "Se ha cambiado su suscripción satisfactóriamente.";
+            Flash.create('success', 'Se ha cambiado su suscripción satisfactóriamente.');
             $rootScope.loading = false;
           });
         })

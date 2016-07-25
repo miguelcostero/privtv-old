@@ -5,7 +5,8 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
 			"com.2fdevs.videogular.plugins.overlayplay",
       "com.2fdevs.videogular.plugins.buffering",
 			"com.2fdevs.videogular.plugins.poster",
-      "ngMessages"])
+      "ngMessages",
+      "ngFlash"])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state("login", {
@@ -86,8 +87,13 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
         templateUrl: "templates/user/home.html"
       })
       .state("user.new", {
-        url: "/new", 
+        url: "/new",
         templateUrl: "templates/user/new.html"
+      })
+      .state("user.edit", {
+        url: "/edit/:userID",
+        templateUrl: "templates/user/edit.html",
+        controller: "editUserController"
       })
     $urlRouterProvider.otherwise("/");
   })

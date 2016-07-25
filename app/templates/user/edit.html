@@ -1,0 +1,64 @@
+<flash-message duration="5000"></flash-message>
+<h4>Editar usuario<br><small>Modifique información de un usuario.</small></h4>
+<hr>
+<form class="form-horizontal" ng-submit="editar()" name="editarUsuario">
+
+  <div class="form-group" ng-class="{ 'has-error' : editarUsuario.nickname.$invalid && !editarUsuario.nickname.$pristine }">
+    <label for="nickname" class="col-sm-3 control-label">Nombre de usuario</label>
+    <div class="col-sm-7">
+      <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="data.nickname" class="form-control" ng-minlength="3" ng-maxlength="12">
+      <div ng-show="editarUsuario.nickname.$invalid && !editarUsuario.nickname.$pristine">
+        <div ng-messages="editarUsuario.nickname.$error">
+            <p class="help-block" ng-message="required">Introduzca un nombre de usuario.</p>
+            <p class="help-block" ng-message="minlength">Nombre de usuario muy corto.</p>
+            <p class="help-block" ng-message="maxlength">Nombre de usuario muy largo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : editarUsuario.bio.$invalid && !editarUsuario.bio.$pristine }">
+    <label for="bio" class="col-sm-3 control-label">Biografía</label>
+    <div class="col-sm-7">
+      <textarea name="bio" rows="5" cols="40" ng-model="data.biografia" ng-required="true" id="bio" class="form-control" ng-maxlength="70"></textarea>
+      <div ng-show="editarUsuario.bio.$invalid && !editarUsuario.bio.$pristine">
+        <div ng-messages="editarUsuario.bio.$error">
+            <p class="help-block" ng-message="required">Introduzca una biografía descriptiva.</p>
+            <p class="help-block" ng-message="maxlength">Biografía descriptiva muy larga.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : editarUsuario.imagen_perfil.$invalid && !editarUsuario.imagen_perfil.$pristine }">
+    <label for="imagen_perfil" class="col-sm-3 control-label">Imagen de perfil</label>
+    <div class="col-sm-7">
+      <input type="file" name="imagen_perfil" fileread="data.imagen_perfil" class="form-control" id="imagen_perfil" accept="image/*">
+      <div ng-show="editarUsuario.imagen_perfil.$invalid && !editarUsuario.img_perfil.$pristine">
+        <div ng-messages="editarUsuario.imagen_perfil.$error">
+            <p class="help-block" ng-message="required">Seleccione una imagen de perfil.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : editarUsuario.gustos.$invalid && !editarUsuario.gustos.$pristine }">
+    <label for="gustos" class="col-sm-3 control-label">Seleccione sus gustos favoritos</label>
+    <div class="col-sm-7">
+      <select name="gustos" id="gustos" data-ng-model="data.gustos" multiple class="form-control" data-ng-options="opt.nombre for opt in generos track by opt.idGenero" required>
+      </select>
+      <div ng-show="editarUsuario.gustos.$invalid && !editarUsuario.gustos.$pristine">
+        <div ng-messages="editarUsuario.gustos.$error">
+            <p class="help-block" ng-message="required">Seleccione al menos un gusto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-7">
+      <button type="submit" class="btn btn-success" ng-disabled="!editarUsuario.$dirty || editarUsuario.$invalid">Guardar cambios</button>
+    </div>
+  </div>
+
+</form>

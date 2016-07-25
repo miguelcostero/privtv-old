@@ -32,6 +32,7 @@
     "videogular-overlay-play": "^1.4.4",
     "videogular-poster": "^1.4.4",
     "videogular-themes-default": "^1.4.4",
-    "angular-messages": "^1.5.7"
+    "angular-messages": "^1.5.7",
+    "angular-flash-alert": "^2.3.0"
   }
 }

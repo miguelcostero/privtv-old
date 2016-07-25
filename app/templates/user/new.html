@@ -1,1 +1,69 @@
-<h2>hola</h2>
+<div class="animated" ng-hide="enableNuevoUsuario">
+  <h4>Usted posee el número máximo de usuarios para su suscripción. <br> <small>Porfavor actualice su suscripción si desea conseguir más usuarios.</small></h4>
+</div>
+<div class="animated" ng-show="enableNuevoUsuario">
+  <flash-message duration="5000"></flash-message>
+  <h4>Nuevo usuario<br><small>Cree un nuevo usuario.</small></h4>
+  <hr>
+  <form class="form-horizontal" ng-submit="nuevo()" name="nuevoUsuario">
+
+    <div class="form-group" ng-class="{ 'has-error' : nuevoUsuario.nickname.$invalid && !nuevoUsuario.nickname.$pristine }">
+      <label for="nickname" class="col-sm-3 control-label">Nombre de usuario</label>
+      <div class="col-sm-7">
+        <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="formData.user.nickname" class="form-control" ng-minlength="3" ng-maxlength="12">
+        <div ng-show="nuevoUsuario.nickname.$invalid && !nuevoUsuario.nickname.$pristine">
+          <div ng-messages="nuevoUsuario.nickname.$error">
+              <p class="help-block" ng-message="required">Introduzca un nombre de usuario.</p>
+              <p class="help-block" ng-message="minlength">Nombre de usuario muy corto.</p>
+              <p class="help-block" ng-message="maxlength">Nombre de usuario muy largo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : nuevoUsuario.bio.$invalid && !nuevoUsuario.bio.$pristine }">
+      <label for="bio" class="col-sm-3 control-label">Biografía</label>
+      <div class="col-sm-7">
+        <textarea name="bio" rows="5" cols="40" ng-model="formData.user.bio" ng-required="true" id="bio" class="form-control" ng-maxlength="70"></textarea>
+        <div ng-show="nuevoUsuario.bio.$invalid && !nuevoUsuario.bio.$pristine">
+          <div ng-messages="nuevoUsuario.bio.$error">
+              <p class="help-block" ng-message="required">Introduzca una biografía descriptiva.</p>
+              <p class="help-block" ng-message="maxlength">Biografía descriptiva muy larga.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : nuevoUsuario.img_perfil.$invalid && !nuevoUsuario.img_perfil.$pristine }">
+      <label for="img_perfil" class="col-sm-3 control-label">Imagen de perfil</label>
+      <div class="col-sm-7">
+        <input type="file" name="img_perfil" fileread="formData.user.imagen" class="form-control" id="img_perfil" ng-required="true" accept="image/*">
+        <div ng-show="nuevoUsuario.img_perfil.$invalid && !nuevoUsuario.img_perfil.$pristine">
+          <div ng-messages="nuevoUsuario.img_perfil.$error">
+              <p class="help-block" ng-message="required">Seleccione una imagen de perfil.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : nuevoUsuario.gustos.$invalid && !nuevoUsuario.gustos.$pristine }">
+      <label for="gustos" class="col-sm-3 control-label">Seleccione sus gustos favoritos</label>
+      <div class="col-sm-7">
+        <select name="gustos" id="gustos" ng-model="formData.user.gustos" multiple class="form-control" ng-options="opt.nombre for opt in generos" required>
+        </select>
+        <div ng-show="nuevoUsuario.gustos.$invalid && !nuevoUsuario.gustos.$pristine">
+          <div ng-messages="nuevoUsuario.gustos.$error">
+              <p class="help-block" ng-message="required">Seleccione al menos un gusto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-7">
+        <button type="submit" class="btn btn-success" ng-disabled="!nuevoUsuario.$dirty || nuevoUsuario.$invalid">Crear nuevo usuario</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,3 +1,4 @@
+<flash-message duration="5000"></flash-message>
 <h4>Usarios <br><small>Información general acerca de los usuarios afiliados.</small></h4>
 <hr>
 <table class="table table-bordered table-hover">
@@ -6,6 +7,7 @@
       <th>NICKNAME</th>
       <th>BIOGRAFÍA</th>
       <th>IMAGEN</th>
+      <th>EDITAR</th>
       <th>ELIMINAR</th>
     </tr>
   </thead>
@@ -16,7 +18,13 @@
       <td class=""><img ng-src="{{user.imagen_perfil}}" alt="{{user.nickname}}" class="img-circle center-block" width="80" height="80"></td>
       <td>
       	<br>
-        <a href="" ng-click="eliminar_usuario(user.idUsuario)" class="btn btn-danger center-block">
+        <a href="#/admin/user/edit/{{user.idUsuario}}" class="btn btn-warning center-block">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </a>
+      </td>
+      <td>
+        <br>
+        <a href="" ng-click="usuario.idUsuario == user.idUsuario || eliminar_usuario(user.idUsuario)" class="btn btn-danger center-block" ng-disabled="usuario.idUsuario == user.idUsuario">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </a>
       </td>
