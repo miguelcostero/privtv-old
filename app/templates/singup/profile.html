@@ -85,7 +85,7 @@
       <label for="telefono">
         Teléfono
       </label>
-      <input type="number" ng-required="true" autocomplete="off" id="telefono" name="telefono" class="input" ng-model="formData.profile.telefono" ng-minlength="11" ng-maxlength="11" />
+      <input type="text" ng-required="true" autocomplete="off" id="telefono" name="telefono" class="input" ng-model="formData.profile.telefono" ng-minlength="11" ng-maxlength="11" valid-number/>
       <p ng-show="resgistro.telefono.$invalid && !resgistro.telefono.$pristine" class="help-block">Ingrese un número de teléfono válido.</p>
     </div>
   </div>

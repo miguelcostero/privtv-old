@@ -1,6 +1,6 @@
 var app = angular.module("pritvApp");
 
-app.controller("UserController", function ($scope, $rootScope, $location, sesionesControl, suscripcionCliente, cliente, logUsuarios, usuariosFactory, Flash, generos) {
+app.controller("UserController", function ($scope, $state, $rootScope, $location, sesionesControl, suscripcionCliente, cliente, logUsuarios, usuariosFactory, Flash, generos) {
 	$rootScope.loading = true;
     $scope.formData = {};
     $scope.enableNuevoUsuario = true;
@@ -46,6 +46,7 @@ app.controller("UserController", function ($scope, $rootScope, $location, sesion
                 $rootScope.loading = false;
                 $scope.users = data;
                 Flash.create('success', 'Se he eliminado correctamente el usuario.');
+                $state.go("user.home", null , { reload: true });
             })
     	}
     }
@@ -57,6 +58,7 @@ app.controller("UserController", function ($scope, $rootScope, $location, sesion
             $rootScope.loading = false;
             $scope.users = data;
             Flash.create('success', 'Se ha creado el nuevo cliente exitosamente.');
+            $state.go("user.home", null , { reload: true });
         });
     }
 })
@@ -79,8 +81,9 @@ app.controller("editUserController", function ($scope, $rootScope, $stateParams,
         usuariosFactory.editar({ id_usuario: $stateParams.userID }, { datos: $scope.data }, function (data) {
             $rootScope.loading = false;
             $scope.users = data;
+            $rootScope.usuario = _.find(data, function(o) { return o.idUsuario == $stateParams.userID; });
             Flash.create('success', 'Se han guardado correctamente sus cambios.');
-            $state.go("user.home");
+            $state.go("user.home", null , { reload: true });
         });
     }
 })

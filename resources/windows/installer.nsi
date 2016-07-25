@@ -95,7 +95,7 @@ Section "Install"
 
     ; Create start menu shortcut
     CreateShortCut "$SMPROGRAMS\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
-    CreateShortcut "$DESKTOP\${productName}.lnk" "$INSTDIR\${exec}" "$INSTDIR\icon.ico"
+    CreateShortcut "$DESKTOP\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
 
     WriteUninstaller "${uninstaller}"
 

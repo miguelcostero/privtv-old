@@ -259,10 +259,7 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
       $location.path("/");
     }
 
-    $scope.hoy = moment().format("YYYY-MM-DD");
-    $scope.limpiar_msg = function () {
-      $scope.msg = "";
-    }
+    $scope.fecha_maxima = moment().subtract(18, "years").format("YYYY-MM-DD");
 
     suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
       $scope.suscripcion = data[0];
