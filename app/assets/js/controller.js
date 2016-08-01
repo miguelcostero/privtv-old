@@ -249,7 +249,7 @@ app.controller("ReproductorController", function ($scope, $stateParams, $rootSco
   });
 });
 
-app.controller("ConfigController", function ($scope, $timeout, $rootScope, $location, Flash, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
+app.controller("ConfigController", function ($scope, $timeout, $rootScope, $location, Flash, isEmailAvailable, sesionesControl, logUsuarios, cliente, cliente_basicos, cliente_password, suscripcion, planes) {
   $rootScope.loading = true;
     if (sesionesControl.get("clienteLogin")) {
       if (!sesionesControl.get("usuarioLogin") || !$rootScope.usuario) {
@@ -273,7 +273,7 @@ app.controller("ConfigController", function ($scope, $timeout, $rootScope, $loca
       $scope.cliente = data[0];
 
       $scope.nuevo = {
-        email:  $scope.cliente.email,
+        email: $scope.cliente.email,
         nombre:  $scope.cliente.nombre,
         apellido:  $scope.cliente.apellido,
         fecha_nacimiento:  moment($scope.cliente.fecha_nacimiento).toDate(),

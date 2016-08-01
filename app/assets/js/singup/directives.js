@@ -47,3 +47,13 @@ app.directive('uniqueEmail', function(isEmailAvailable) {
     }
   };
 });
+
+app.directive('uniqueEmailEdit', function(isEmailAvailableEdit) {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function(scope, element, attrs, ngModel) {
+      ngModel.$asyncValidators.unique = isEmailAvailableEdit;
+    }
+  };
+});

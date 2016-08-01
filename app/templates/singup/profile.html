@@ -9,15 +9,25 @@
     <label for="nombre">
       Nombre
     </label>
-    <input type="text" ng-required="true" autocomplete="off" id="nombre" name="nombre" class="input" ng-model="formData.profile.nombre" />
-    <p ng-show="resgistro.nombre.$invalid && !resgistro.nombre.$pristine" class="help-block">Tu nombre es necesario.</p>
+    <input type="text" ng-required="true" autocomplete="off" id="nombre" name="nombre" class="input" ng-model="formData.profile.nombre" pattern="^[a-zA-Z-\s]+$"/>
+    <div ng-show="registro.nombre.$invalid && !registro.nombre.$pristine">
+      <div ng-messages="registro.nombre.$error">
+        <p class="help-block" ng-message="required">Tu nombre es necesario.</p>
+        <p class="help-block" ng-message="pattern">Tu nombre contiene caracteres no permitidos.</p>
+      </div>
+    </div>
   </div>
   <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.apellido.$invalid && !resgistro.apellido.$pristine }">
     <label for="apellido">
       Apellido
     </label>
-    <input type="text" ng-required="true" autocomplete="off" id="apellido" name="apellido" class="input" ng-model="formData.profile.apellido" />
-    <p ng-show="resgistro.apellido.$invalid && !resgistro.apellido.$pristine" class="help-block">Tu apellido es necesario.</p>
+    <input type="text" ng-required="true" autocomplete="off" id="apellido" name="apellido" class="input" ng-model="formData.profile.apellido" pattern="^[a-zA-Z-\s]+$"/>
+    <div ng-show="registro.apellido.$invalid && !registro.apellido.$pristine">
+      <div ng-messages="registro.apellido.$error">
+        <p ng-message="required"  class="help-block">Tu apellido es necesario.</p>
+        <p ng-message="pattern"  class="help-block">Tu apellido contiene caracteres no permitidos.</p>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">

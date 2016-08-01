@@ -115,11 +115,13 @@ h1 {
   max-width: 98%;
 }
 
+.all-movies {
+  display: flex;
+  justify-content: center;
+}
+
 .browse-movie-wrap {
-  margin-top: 0.5em;
-  margin-right: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: 0.32em;
+  margin: 0.2em;
   float: left;
 }
 

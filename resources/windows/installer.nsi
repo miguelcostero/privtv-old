@@ -93,9 +93,13 @@ Section "Install"
     ; Include all files from /build directory
     File /r "${src}\*"
 
-    ; Create start menu shortcut
-    CreateShortCut "$SMPROGRAMS\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
-    CreateShortcut "$DESKTOP\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
+    ;create desktop shortcut
+    CreateShortCut "$DESKTOP\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\icon.ico"
+
+    ;create start-menu items
+    CreateDirectory "$SMPROGRAMS\${productName}"
+    CreateShortCut "$SMPROGRAMS\${productName}\Uninstall.lnk" "$INSTDIR\${uninstaller}" "" "$INSTDIR\icon.ico" 1
+    CreateShortCut "$SMPROGRAMS\${productName}\${productName}.lnk" "$INSTDIR\${exec}" "" "$INSTDIR\${exec}" 0
 
     WriteUninstaller "${uninstaller}"
 
@@ -124,7 +128,7 @@ Function un.confirm
 
     ${NSD_CreateLabel} 1u 1u 100% 24u "Si desea desinstalar ${productName} de su computador presione desinstalar."
 
-    ${NSD_CreateCheckbox} 1u 35u 100% 10u "¿Desea eliminar los archivos de configuración personal de ${productName}?"
+    ${NSD_CreateCheckbox} 1u 35u 100% 10u "Desea eliminar los archivos de configuracion personal de ${productName}?"
     Pop $RemoveAppDataCheckbox
 
     nsDialogs::Show
@@ -144,8 +148,12 @@ Section "Uninstall"
     DeleteRegKey HKLM "${uninstkey}"
     DeleteRegKey HKLM "${regkey}"
 
-    Delete "$SMPROGRAMS\${productName}.lnk"
+;    Delete "$SMPROGRAMS\${productName}.lnk"
+;    Delete "$DESKTOP\${productName}.lnk"
+
     Delete "$DESKTOP\${productName}.lnk"
+    Delete "$SMPROGRAMS\${productName}\*.*"
+    RMDir  "$SMPROGRAMS\${productName}"
 
     ; Remove whole directory from Program Files
     RMDir /r "$INSTDIR"

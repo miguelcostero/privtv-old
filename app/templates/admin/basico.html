@@ -2,11 +2,11 @@
 <h4>Cuenta <br><small>Configuraciones básicas de tu cuenta.</small></h4>
 <hr>
 <form class="form-horizontal" ng-submit="cambios_cuenta()" name="form">
-  <div class="form-group" ng-class="{ 'has-error' : form.email.$invalid && !form.email.$pristine }">
+  <div class="form-group" ng-class="{ 'has-error' : form.email.$invalid && !form.email.$pristine || form.email_validation.$invalid }">
     <label for="email" class="col-sm-3 control-label">Correo electrónico</label>
     <div class="col-sm-7">
-      <input type="email" class="form-control" id="email" name="email" ng-model="nuevo.email" ng-required="true" unique-email ng-model-options="{ debounce: 100 }">
-      <span class="help-block" ng-hide="form.email.$error">* Correo electrónico con el que accede a su cuenta en Priv.TV.</span>
+      <input type="email" class="form-control" id="email" name="email" ng-model="nuevo.email" ng-required="true" unique-email-edit ng-model-options="{ debounce: 100 }">
+      <span class="help-block" ng-hide="form.email.$invalid">* Correo electrónico con el que accede a su cuenta en Priv.TV.</span>
       <div ng-if="form.email.$pending.unique">Validando....</div>
       <div ng-show="form.email.$invalid && !form.email.$pristine">
         <div ng-messages="form.email.$error">
@@ -20,17 +20,27 @@
   <div class="form-group" ng-class="{ 'has-error' : form.nombre.$invalid && !form.nombre.$pristine }">
     <label for="nombre" class="col-sm-3 control-label">Nombre</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" id="nombre" name="nombre" ng-model="nuevo.nombre" ng-required="true">
+      <input type="text" class="form-control" id="nombre" name="nombre" ng-model="nuevo.nombre" ng-required="true" pattern="^[a-zA-Z-\s]+$">
       <span class="help-block" ng-show="!form.nombre.$invalid">* Necesario para los datos de pago.</span>
-      <p ng-show="form.nombre.$invalid && !form.nombre.$pristine" class="help-block">Tu nombre es necesario.</p>
+      <div ng-show="form.nombre.$invalid && !form.nombre.$pristine">
+        <div ng-messages="form.nombre.$error">
+          <p class="help-block" ng-message="required">Tu nombre es necesario.</p>
+          <p class="help-block" ng-message="pattern">Tu nombre contiene caracteres no permitidos.</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-group" ng-class="{ 'has-error' : form.apellido.$invalid && !form.apellido.$pristine }">
     <label for="apellido" class="col-sm-3 control-label">Apellido</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" id="apellido" name="apellido" ng-model="nuevo.apellido" ng-required="true">
+      <input type="text" class="form-control" id="apellido" name="apellido" ng-model="nuevo.apellido" ng-required="true" pattern="^[a-zA-Z-\s]+$">
       <span class="help-block" ng-show="!form.apellido.$invalid">* Necesario para los datos de pago.</span>
-      <p ng-show="form.apellido.$invalid && !form.apellido.$pristine" class="help-block">Tu apellido es necesario.</p>
+      <div ng-show="form.apellido.$invalid && !form.apellido.$pristine">
+        <div ng-messages="form.apellido.$error">
+          <p ng-message="required"  class="help-block">Tu apellido es necesario.</p>
+          <p ng-message="pattern"  class="help-block">Tu apellido contiene caracteres no permitidos.</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-group" ng-class="{ 'has-error' : form.fecha_nacimiento.$invalid && !form.fecha_nacimiento.$pristine }">

@@ -10,12 +10,13 @@
     <div class="form-group" ng-class="{ 'has-error' : nuevoUsuario.nickname.$invalid && !nuevoUsuario.nickname.$pristine }">
       <label for="nickname" class="col-sm-3 control-label">Nombre de usuario</label>
       <div class="col-sm-7">
-        <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="formData.user.nickname" class="form-control" ng-minlength="3" ng-maxlength="12">
+        <input type="text" name="nickname" id="nickname" ng-required="true" ng-model="formData.user.nickname" class="form-control" ng-minlength="3" ng-maxlength="12" pattern="^[a-zA-Z0-9_.-]*$">
         <div ng-show="nuevoUsuario.nickname.$invalid && !nuevoUsuario.nickname.$pristine">
           <div ng-messages="nuevoUsuario.nickname.$error">
               <p class="help-block" ng-message="required">Introduzca un nombre de usuario.</p>
               <p class="help-block" ng-message="minlength">Nombre de usuario muy corto.</p>
               <p class="help-block" ng-message="maxlength">Nombre de usuario muy largo.</p>
+              <p class="help-block" ng-message="pattern">Nombre de usuario solo puede contener letras, números, guión (-) y guón bajo (_).</p>
           </div>
         </div>
       </div>
