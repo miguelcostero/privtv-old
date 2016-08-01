@@ -1,3 +1,6 @@
+//establecer si estamos corriendo el api local o remoto
+var api_url = "api-privtv.rhcloud.com";
+
 //Declaramos nuestra aplicación de AngulaJS
 angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
 			"com.2fdevs.videogular",
@@ -95,5 +98,15 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
         templateUrl: "templates/user/edit.html",
         controller: "editUserController"
       })
+      //payment
+      .state("payment", {
+        url: "/admin/payment",
+        controller: "PaymentController",
+        templateUrl: "templates/payment/index.html"
+      })
+      .state("payment.home", {
+        url: "/home",
+        templateUrl: "templates/payment/home.html"
+      })
     $urlRouterProvider.otherwise("/");
-  })
+  });

@@ -4,7 +4,7 @@ app.factory('isEmailAvailable', function($q, $http) {
   return function(email) {
     var deferred = $q.defer();
 
-    $http.get('http://api-privtv.rhcloud.com/admin/clientes/' + email).then(function(res) {
+    $http.get('http://' + api_url + '/admin/clientes/' + email).then(function(res) {
       // Found the user, therefore not unique.
       if (res.data == 'true') {
         deferred.reject();
@@ -21,7 +21,7 @@ app.factory('isEmailAvailableEdit', function($q, $http, sesionesControl) {
   return function(email) {
     var deferred = $q.defer();
 
-    $http.get('http://api-privtv.rhcloud.com/admin/clientes/' + email + '/id/'+ sesionesControl.get("id_cliente")).then(function(res) {
+    $http.get('http://' + api_url + '/admin/clientes/' + email + '/id/'+ sesionesControl.get("id_cliente")).then(function(res) {
       // Found the user, therefore not unique.
       if (res.data == 'true') {
         deferred.reject();
@@ -35,5 +35,5 @@ app.factory('isEmailAvailableEdit', function($q, $http, sesionesControl) {
 });
 
 app.factory('nuevoCliente', function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/clientes/nuevo", {} , { nuevo: { method: "POST" }});
+  return $resource("http://" + api_url + "/clientes/nuevo", {} , { nuevo: { method: "POST" }});
 });

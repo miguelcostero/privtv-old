@@ -1,7 +1,7 @@
 var app = angular.module("pritvApp");
 
 app.factory("peliculas", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas/:id_pelicula", { id_pelicula: "@id_pelicula" }, {
+  return $resource("http://" + api_url + "/peliculas/:id_pelicula", { id_pelicula: "@id_pelicula" }, {
     get: {
       method: "GET",
       isArray: true
@@ -10,7 +10,7 @@ app.factory("peliculas", function ($resource) {
 })
 
 app.factory("generoPelicula", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/pelicula-generos/:id_pelicula", //la url donde queremos consumir
+    return $resource("http://" + api_url + "/pelicula-generos/:id_pelicula", //la url donde queremos consumir
         { id_pelicula: "@id_pelicula" }, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
@@ -19,7 +19,7 @@ app.factory("generoPelicula", function ($resource) {
 })
 
 app.factory("actoresPelicula", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/pelicula-actores/:id_pelicula", //la url donde queremos consumir
+    return $resource("http://" + api_url + "/pelicula-actores/:id_pelicula", //la url donde queremos consumir
         { id_pelicula: "@id_pelicula" }, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
@@ -28,7 +28,7 @@ app.factory("actoresPelicula", function ($resource) {
 })
 
 app.factory("directoresPelicula", function ($resource) {
-    return $resource("http://api-privtv.rhcloud.com/pelicula-directores/:id_pelicula", //la url donde queremos consumir
+    return $resource("http://" + api_url + "/pelicula-directores/:id_pelicula", //la url donde queremos consumir
         { id_pelicula: "@id_pelicula" }, //aquí podemos pasar variables que queramos pasar a la consulta
         //a la función get le decimos el método, y, si es un array lo que devuelve
         //ponemos isArray en true
@@ -49,7 +49,7 @@ app.factory("logCliente", function ($http, $location, sesionesControl, mensajesF
       //funcion para iniciar la sesion del cliente
       login: function (email, password) {
         return $http({
-                url: 'http://api-privtv.rhcloud.com/validar-cliente',
+                url: 'http://" + api_url + "/validar-cliente',
                 method: "POST",
                 data : "email_login="+email+"&password_login="+password,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -117,7 +117,7 @@ app.factory("logUsuarios", function ($resource, sesionesControl) {
 
   return {
     getAllUsers: function (idCliente) {
-      return $resource("http://api-privtv.rhcloud.com/users/cliente/:id_cliente", //la url donde queremos consumir
+      return $resource("http://" + api_url + "/users/cliente/:id_cliente", //la url donde queremos consumir
           { id_cliente: idCliente }, //aquí podemos pasar variables que queramos pasar a la consulta
           //a la función get le decimos el método, y, si es un array lo que devuelve
           //ponemos isArray en true
@@ -125,7 +125,7 @@ app.factory("logUsuarios", function ($resource, sesionesControl) {
       })
     },
     getUser: function (idUsuario) {
-      return $resource("http://api-privtv.rhcloud.com/users/:id_usuario", //la url donde queremos consumir
+      return $resource("http://" + api_url + "/users/:id_usuario", //la url donde queremos consumir
           { id_usuario: idUsuario },
           { get: { method: "GET", isArray: true }
       })
@@ -152,14 +152,14 @@ app.factory("mensajesFlash", function($rootScope){
 });
 
 app.factory("subtitulos", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas/:id_pelicula/subtitulos", //la url donde queremos consumir
+  return $resource("http://" + api_url + "/peliculas/:id_pelicula/subtitulos", //la url donde queremos consumir
       { id_pelicula: "@id_pelicula"  },
       { get: { method: "GET", isArray: true }
   })
 })
 
 app.factory("reproducciones", function ($resource, $http) {
-  return $resource("http://api-privtv.rhcloud.com/peliculas/reproduccion/:id_pelicula",
+  return $resource("http://" + api_url + "/peliculas/reproduccion/:id_pelicula",
       { id_pelicula: "@id_pelicula" },
       {
          post: {
@@ -169,35 +169,35 @@ app.factory("reproducciones", function ($resource, $http) {
 })
 
 app.factory("generos", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/generos/:id_genero",
+  return $resource("http://" + api_url + "/generos/:id_genero",
       { id_genero: "@id_genero" },
       { get: { method: "GET", isArray: true }
     })
 })
 
 app.factory("cliente", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/clientes/:id_cliente",
+  return $resource("http://" + api_url + "/clientes/:id_cliente",
       { id_cliente: "@id_cliente" },
       { get: { method: "GET", isArray: true }
     })
 })
 
 app.factory("cliente_basicos", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/admin/clientes/basicos/:id_cliente",
+  return $resource("http://" + api_url + "/admin/clientes/basicos/:id_cliente",
         { id_cliente: "@id_cliente" },
         { update: { method: "PUT" }
       })
 })
 
 app.factory("cliente_password", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/password",
+  return $resource("http://" + api_url + "/admin/clientes/:id_cliente/password",
         { id_cliente: "@id_cliente" },
         { cambiar: { method: "PATCH" }
       })
 })
 
 app.factory("suscripcion", function ($resource) {
-  return $resource("http://api-privtv.rhcloud.com/admin/clientes/:id_cliente/suscripcion/:id_suscripcion",
+  return $resource("http://" + api_url + "/admin/clientes/:id_cliente/suscripcion/:id_suscripcion",
       { id_cliente: "@id_cliente" },
       { get: { method: "GET", isArray: true },
         cambiar_plan: { method: "PATCH" }
@@ -205,7 +205,7 @@ app.factory("suscripcion", function ($resource) {
 })
 
 app.factory("planes", function ($resource) {
-  return $resource("http:/api-privtv.rhcloud.com/admin/planes/:id_plan",
+  return $resource("http:/" + api_url + "/admin/planes/:id_plan",
       {
         id_plan: "@id_plan"
       }, {
