@@ -49,7 +49,7 @@ app.factory("logCliente", function ($http, $location, sesionesControl, mensajesF
       //funcion para iniciar la sesion del cliente
       login: function (email, password) {
         return $http({
-                url: 'http://" + api_url + "/validar-cliente',
+                url: 'http://' + api_url + '/validar-cliente',
                 method: "POST",
                 data : "email_login="+email+"&password_login="+password,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
