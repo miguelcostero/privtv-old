@@ -1,0 +1,11 @@
+<h4>Historial de pagos <br><small>Lista de pagos realizados.</small></h4>
+<hr>
+
+<div ng-show="pagos.length > 0">
+
+  {{pagos | json}}
+
+</div>
+<div ng-show="noPays.length > 0">
+  <p>{{noPays}}</p>
+</div>

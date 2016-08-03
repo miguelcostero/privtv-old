@@ -1,0 +1,85 @@
+<flash-message duration="5000"></flash-message>
+
+<h4>Editar datos de tarjeta <br><small>Datos básicos de su tarjeta de crédito.</small></h4>
+<hr>
+
+<form class="form-horizontal" ng-submit="actualizar()" name="form">
+
+  <div class="form-group" ng-class="{ 'has-error' : form.nombre_tarjeta.$invalid && !form.nombre_tarjeta.$pristine }">
+    <label for="nombre_tarjeta" class="col-sm-3 control-label">Nombre (como aparece en tarjeta)</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="nombre_tarjeta" name="nombre_tarjeta" ng-model="editar.nombre_tarjeta" ng-required="true" pattern="^[a-zA-Z-\s]+$">
+      <div ng-show="form.nombre_tarjeta.$invalid && !form.nombre_tarjeta.$pristine">
+        <div ng-messages="form.nombre_tarjeta.$error">
+          <p ng-message="required" class="help-block">Este campo es necesario.</p>
+          <p ng-message="pattern" class="help-block">Tu nombre contiene caracteres no permitidos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.codigo_tarjeta.$invalid && !form.codigo_tarjeta.$pristine }">
+    <label for="codigo_tarjeta" class="col-sm-3 control-label">Número de tarjeta</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="codigo_tarjeta" name="codigo_tarjeta" ng-model="editar.codigo_tarjeta" ng-required="true" ng-maxlength="16" ng-minlength="16">
+      <div ng-show="form.codigo_tarjeta.$invalid && !form.codigo_tarjeta.$pristine">
+        <div ng-messages="form.codigo_tarjeta.$error">
+          <p ng-message="required"  class="help-block">Este campo es necesario.</p>
+          <p ng-message="minlength"  class="help-block">Debe contener 16 digitos.</p>
+          <p ng-message="maxlength"  class="help-block">Debe contener 16 digitos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.ccv_tarjeta.$invalid && !form.ccv_tarjeta.$pristine }">
+    <label for="ccv_tarjeta" class="col-sm-3 control-label">Código de seguridad</label>
+    <div class="col-sm-7">
+      <input type="number" class="form-control" id="ccv_tarjeta" name="ccv_tarjeta" ng-model="editar.ccv_tarjeta" ng-required="true" ng-maxlength="3" ng-minlength="3">
+      <p ng-show="resgistro.ccv_tarjeta.$invalid && !resgistro.ccv_tarjeta.$pristine" class="help-block">Ingrese un código de seguridad válido.</p>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.tipo_tarjeta.$invalid && !form.tipo_tarjeta.$pristine }">
+    <label for="tipo_tarjeta" class="col-sm-3 control-label">Tipo de tarjeta</label>
+    <div class="col-sm-7">
+      <select class="form-control" name="tipo_tarjeta" id="tipo_tarjeta" ng-model="editar.tipo_tarjeta" ng-required="true" autocomplete="off">
+        <option value="Visa">Visa</option>
+        <option value="Master Card">Master Card</option>
+      </select>
+      <p ng-show="form.tipo_tarjeta.$invalid && !form.tipo_tarjeta.$pristine" class="help-block">Seleccione su tipo de tarjeta de crédito.</p>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.fecha_exp_tarjeta.$invalid && !form.fecha_exp_tarjeta.$pristine }">
+    <label for="fecha_exp_tarjeta" class="col-sm-3 control-label">Fecha de expiración</label>
+    <div class="col-sm-7">
+      <input class="form-control" type="month" name="fecha_exp_tarjeta" id="fecha_exp_tarjeta" ng-model="editar.fecha_exp_tarjeta" ng-required="true" min="{{hoy}}">
+      <div ng-show="form.fecha_exp_tarjeta.$invalid && !form.fecha_exp_tarjeta.$pristine">
+        <div ng-messages="form.fecha_exp_tarjeta.$error">
+          <p class="help-block" ng-message="required">Este campo es necesario.</p>
+          <p class="help-block" ng-message="min">La fecha de expiración no puede ser menor que hoy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-class="{ 'has-error' : form.direccion_facturacion.$invalid && !form.direccion_facturacion.$pristine }">
+    <label for="direccion_facturacion" class="col-sm-3 control-label">Dirección de facturación</label>
+    <div class="col-sm-7">
+      <textarea name="direccion_facturacion" rows="8" cols="40" class="form-control" ng-model="editar.direccion_facturacion" ng-required="true" pattern="^[a-zA-Z0-9_.-]*$"></textarea>
+      <div ng-show="form.direccion_facturacion.$invalid && !form.direccion_facturacion.$pristine">
+        <div ng-messages="form.direccion_facturacion.$error">
+          <p class="help-block" ng-message="required">Este campo es necesario.</p>
+          <p class="help-block" ng-message="pattern">Algunos caracteres ingresados no están permitidos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-7">
+      <button type="submit" class="btn btn-success" ng-disabled="!form.$dirty && form.$invalid">Guardar cambios</button>
+    </div>
+  </div>
+</form>

@@ -5,6 +5,22 @@
 </div>
 <hr>
 <div class="row">
+  <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.nombre_tarjeta.$invalid && !resgistro.nombre_tarjeta.$pristine }">
+    <label for="nombre_tarjeta">
+      Nombre (como aparece en tarjeta)
+    </label>
+    <input type="text" ng-required="true" autocomplete="off" id="nombre_tarjeta" name="nombre_tarjeta" class="input" ng-model="formData.payment.nombre_tarjeta" pattern="^[a-zA-Z-\s]+$" />
+    <div ng-show="resgistro.nombre_tarjeta.$invalid && !resgistro.nombre_tarjeta.$pristine">
+      <div ng-messages="resgistro.nombre_tarjeta.$error">
+        <p ng-message="required"  class="help-block">Este campo es necesario.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
   <div class="col-xs-6" ng-class="{ 'has-error' : resgistro.tipo.$invalid && !resgistro.tipo.$pristine }">
     <label for="tipo">
       Tipo de tarjeta
@@ -22,12 +38,12 @@
     <label for="card">
       Número de tarjeta
     </label>
-    <input type="number" ng-required="true" autocomplete="off" id="card" name="card" class="input" ng-model="formData.payment.card" ng-maxlength="19" ng-minlength="15" />
+    <input type="number" ng-required="true" autocomplete="off" id="card" name="card" class="input" ng-model="formData.payment.card" ng-maxlength="16" ng-minlength="16" />
     <div ng-show="resgistro.card.$invalid && !resgistro.card.$pristine">
       <div ng-messages="resgistro.card.$error">
         <p ng-message="required"  class="help-block">Este campo es necesario.</p>
-        <p ng-message="minlength"  class="help-block">Debe contener mínimo 15 digitos.</p>
-        <p ng-message="maxlength"  class="help-block">Debe contener máximo 19 dígitos.</p>
+        <p ng-message="minlength"  class="help-block">Debe contener 16 digitos.</p>
+        <p ng-message="maxlength"  class="help-block">Debe contener 16 digitos.</p>
       </div>
     </div>
   </div>
@@ -42,36 +58,31 @@
 
 <br>
 
-<p class="texto">Fecha de Vencimiento</p>
 <div class="row">
-  <div class="col-xs-4" ng-class="{ 'has-error' : resgistro.mes.$invalid && !resgistro.mes.$pristine }">
-    <label for="mes">
-      Mes
-    </label>
-    <select class="input select" name="mes" id="mes" ng-model="formData.payment.vencimiento.mes" ng-required="true" autocomplete="off">
-      <option value="1">Enero</option>
-      <option value="3">Febrero</option>
-      <option value="4">Marzo</option>
-      <option value="5">Abril</option>
-      <option value="5">Mayo</option>
-      <option value="6">Junio</option>
-      <option value="7">Julio</option>
-      <option value="8">Agosto</option>
-      <option value="9">Septiembre</option>
-      <option value="10">Octubre</option>
-      <option value="11">Noviembre</option>
-      <option value="12">Diciembre</option>
-    </select>
-    <p ng-show="resgistro.mes.$invalid && !resgistro.mes.$pristine" class="help-block">Este campo es necesario.</p>
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.fecha_exp_tarjeta.$invalid && !resgistro.fecha_exp_tarjeta.$pristine }">
+    <label for="fecha_exp_tarjeta">Fecha de Vencimiento</label>
+    <input type="month" class="input" name="fecha_exp_tarjeta" id="fecha_exp_tarjeta" ng-model="formData.payment.fecha_exp_tarjeta" ng-required="true" autocomplete="off" min="{{hoy}}">
+    <div ng-show="resgistro.fecha_exp_tarjeta.$invalid && !resgistro.fecha_exp_tarjeta.$pristine">
+      <div ng-messages="resgistro.fecha_exp_tarjeta.$error">
+        <p ng-message="required" class="help-block">Este campo es necesario.</p>
+        <p ng-message="min" class="help-block">La fecha de expiración no puede ser menor que hoy.</p>
+      </div>
+    </div>
   </div>
-  <div class="col-xs-2" ng-class="{ 'has-error' : resgistro.ano.$invalid && !resgistro.ano.$pristine }">
-    <label for="ano">
-      Año
-    </label>
-    <select class="input select" name="ano" id="ano" ng-model="formData.payment.vencimiento.ano" ng-required="true" autocomplete="off">
-      <option ng-repeat="opt in years" value="{{opt.year}}">{{opt.year}}</option>
-    </select>
-    <p ng-show="resgistro.ano.$invalid && !resgistro.ano.$pristine" class="help-block">Este campo es necesario.</p>
+</div>
+
+<div class="row">
+  <div class="col-xs-12" ng-class="{ 'has-error' : resgistro.direccion_facturacion.$invalid && !resgistro.direccion_facturacion.$pristine }">
+    <div class="campo">
+      <label for="direccion_facturacion">Dirección de facturación</label>
+      <textarea name="direccion_facturacion" rows="5" cols="40" ng-model="formData.payment.direccion_facturacion" ng-required="true" id="direccion_facturacion" class="input" pattern="^[a-zA-Z-\s]+$"></textarea>
+      <div ng-show="resgistro.direccion_facturacion.$invalid && !resgistro.direccion_facturacion.$pristine">
+        <div ng-messages="resgistro.direccion_facturacion.$error">
+            <p class="help-block" ng-message="required">Este campo es necesario.</p>
+            <p class="help-block" ng-message="pattern">Ha ingresado caracteres no válidos.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

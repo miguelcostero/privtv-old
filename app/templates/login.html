@@ -11,14 +11,18 @@
         </div>
 
         <form name="loginform" ng-submit="login()">
-          <div class="form-group">
-            <label for="email_login">Correo Electrónico</label>
-            <input name="email_login" id="email_login" type="email" ng-model="user_form.email" class="form-control" ng-required="true" aria-describedby="helpBlock">
-            <span id="helpBlock" class="help-block" ng-show="loginform.email_login.$error.email">El email introducido no es válido.</span>
+          <div class="form-group" ng-class="{ 'has-error' : loginform.email_login.$invalid && !loginform.email_login.$pristine }">
+            <label for="email_login" class="control-label">Correo Electrónico</label>
+            <input name="email_login" id="email_login" type="email" ng-model="user_form.email" class="form-control" ng-required="true">
+            <div ng-show="loginform.email_login.$invalid && !loginform.email_login.$pristine">
+              <div ng-messages="loginform.email_login.$error">
+                <p ng-message="email"  class="help-block">El email introducido no es válido.</p>
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="password_login">Contraseña</label>
+          <div class="form-group" ng-class="{ 'has-error' : loginform.password_login.$invalid && !loginform.password_login.$pristine }">
+            <label for="password_login" class="control-label">Contraseña</label>
             <input name="password_login" id="password_login" type="password" ng-model="user_form.password" class="form-control" ng-required="true">
           </div>
 

@@ -1,3 +1,45 @@
-<h4>Pagos <br><small>Beta</small></h4>
+<h4>Datos de pagos <br><small>Información de su tarjeta de crédito.</small></h4>
 <hr>
-{{data_pagos | json}}
+
+<div class="row">
+  <div class="col-xs-6">
+    <p>Tarjeta de crédito</p>
+  </div>
+  <div class="col-xs-6">
+    <p>Fecha de expiración</p>
+  </div>
+</div>
+
+<div class="panel panel-default cards" ng-class="{ 'panel-danger' : data_pagos.invalida }">
+  <div class="panel-heading">
+    <p ng-if="data_pagos.invalida"><strong>Su tarjeta se encuentra vencida.</strong></p>
+    <div class="row">
+      <div class="col-xs-6">
+        <img src="./assets/images/visa.png" alt="VISA" ng-if="data_pagos.tipo_tarjeta == 'Visa'" width="34" height="21">
+        <img src="./assets/images/mastercard.png" alt="Master Card" ng-if="data_pagos.tipo_tarjeta == 'Master Card'" width="34" height="21">
+        <b>{{ data_pagos.tipo_tarjeta }}</b> que termina en <strong>{{ data_pagos.codigo_tarjeta | limitTo : 4 : 12 }}</strong>
+      </div>
+      <div class="col-xs-6">
+        {{ data_pagos.fecha_exp_tarjeta | date : 'MM/yyyy' }}
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <p><strong>Nombre en la tarjeta</strong></p>
+        <p>{{ data_pagos.nombre_tarjeta }}</p>
+      </div>
+      <div class="col-xs-6">
+        <p><strong>Dirección de facturación</strong></p>
+        <p>{{ data_pagos.direccion_facturacion }}</p>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12">
+        <a ui-sref="payment.edit({iddetalles_pago_cliente: data_pagos.iddetalles_pago_cliente})" ui-sref-opts="{reload:true}" class="btn btn-warning pull-right">Modificar</a>
+      </div>
+    </div>
+  </div>
+</div>
