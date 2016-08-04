@@ -51,8 +51,14 @@ app.factory("logCliente", function ($http, sesionesControl, Flash, $rootScope, m
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (data, status, headers, config) {
               if (status == 200) {
-                //verificamos morosidad del cliente
-                morosidad.verificar(data[0].idCliente);
+                //verificamos si el cliente se encuentra suspendido
+                if (data[0].suspendido === "false") {
+                  //verificamos morosidad del cliente
+                  morosidad.verificar(data[0].idCliente);
+                } else {
+                  $rootScope.loading = false;
+                  Flash.create('danger', 'Esta cuenta se encuentra suspendida.');
+                }
               }
             }).error(function(error, status, headers, config) {
                 if (status == 401) {
