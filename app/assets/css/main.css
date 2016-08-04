@@ -4,6 +4,16 @@
 }
 
 @font-face {
+  font-family: 'Source Sans Pro';
+  src: url("../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Fjalla One';
+  src: url("../fonts/Fjalla_One/FjallaOne-Regular.ttf");
+}
+
+@font-face {
   font-family: "Montserrat";
   src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
 }

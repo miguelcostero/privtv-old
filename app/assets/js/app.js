@@ -113,13 +113,13 @@ angular.module("pritvApp", ["ngResource", "ui.router", "ngSanitize",
         url: "/edit/{iddetalles_pago_cliente:[0-9]{1,8}}",
         templateUrl: "templates/payment/edit.html"
       })
-      .state("payment.record", {
-        url: "/record",
-        templateUrl: "templates/payment/record.html"
-      })
       .state("payment.billing", {
         url: "/billing",
         templateUrl: "templates/payment/billing.html"
+      })
+      .state("payment.pay", {
+        url: "/pay/:clienteID/:montoTotal",
+        templateUrl: "templates/payment/pay.html"
       })
     $urlRouterProvider.otherwise("/");
   });

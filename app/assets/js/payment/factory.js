@@ -15,6 +15,9 @@ app.factory("Pagos", function ($resource) {
   return $resource("http://"+ api_url + "/pagos/:id_cliente", { id_cliente: "@id_cliente" }, {
     get: {
       method: "GET", isArray: true
+    },
+    pay: {
+      method: "POST", isArray: true
     }
   })
 })

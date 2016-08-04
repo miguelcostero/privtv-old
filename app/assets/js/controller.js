@@ -61,8 +61,6 @@ app.controller("ListarPeliculasController", function ($scope, $location, pelicul
 
       } else if ($scope.sort == 4) {
         $scope.Peliculas = _.sortBy(lista_peliculas, 'nombre');
-      } else if ($scope.sort == 5) {
-
       }
 
       $rootScope.loading = false;

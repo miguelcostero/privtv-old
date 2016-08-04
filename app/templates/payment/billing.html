@@ -1,4 +1,69 @@
+<flash-message duration="5000"></flash-message>
+
 <h4>Facturación <br><small>Información acerca de cada factura y próximos pagos de suscripción.</small></h4>
 <hr>
 
-{{ data_pagos | json }}
+<div class="row">
+  <div class="col-xs-12">
+    <p>Cliente desde <span class="text-info"><b>{{ data_pagos.fecha_registro | date:'d MMM y' }}</b></span></p>
+
+    <p><b>Suscripción actual</b> <br></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>NOMBRE</th>
+          <th>DESCRIPCIÓN</th>
+          <th>MONTO MENSUAL</th>
+          <th># USUARIOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ suscripcion.nombre }}</td>
+          <td>{{ suscripcion.descripcion }}</td>
+          <td>{{ suscripcion.monto_mensual | currency:"Bs. ":2 }}</td>
+          <td>{{ suscripcion.num_usuarios }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row" ng-if="nextPay.avaible">
+      <div class="col-xs-6">
+        <p class="pull-left impresionante" ng-hide="nextPay.acumulado.real">Próximo pago <b class="text-info">{{ nextPay.pago | date:"d MMM y" }}</b></p>
+        <p class="pull-left" ng-show="nextPay.acumulado.real">Usted presenta <b class="text-info">{{nextPay.acumulado.diferencia}} meses </b> de retraso en sus pagos</p>
+      </div>
+      <div class="col-xs-6">
+        <p class="pull-right"><a ui-sref="payment.pay({clienteID: cliente.idCliente, montoTotal: suscripcion.monto_mensual })" class="btn btn-success">Pagar ahora</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Historial de pagos</h5>
+    <hr>
+    <div ng-show="pagos.length > 0">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>MONTO</th>
+            <th>FECHA Y HORA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pago in pagos">
+            <td>{{ pago.monto | currency:"Bs. ":2 }}</td>
+            <td>{{ pago.fecha_hora | date:"d MMM y h:mm:ss a" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-show="noPays.length > 0">
+      <p>{{noPays}}</p>
+    </div>
+  </div>
+</div>
