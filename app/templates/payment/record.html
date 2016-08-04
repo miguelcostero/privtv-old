@@ -3,7 +3,20 @@
 
 <div ng-show="pagos.length > 0">
 
-  {{pagos | json}}
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>MONTO (Bs)</th>
+        <th>FECHA Y HORA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pago in pagos">
+        <td>{{ pago.monto | currency:"Bs. ":2 }}</td>
+        <td>{{ pago.fecha_hora | date:"d MMM y h:mm:ss a" }}</td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
 <div ng-show="noPays.length > 0">
