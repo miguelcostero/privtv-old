@@ -4,11 +4,7 @@
       <img src="./assets/images/icon.ico" alt="Priv.TV" class="center-block"  width="150" height="150">
       <h2 class="text-center brand-text">Priv.TV</h2>
       <div id="login" class="col-sm-push-4 col-sm-4 well">
-        <div ng-show="flash">
-          <div data-alert class="alert-box alert ">
-            {{ flash }}
-          </div>
-        </div>
+        <flash-message duration="8000"></flash-message>
 
         <form name="loginform" ng-submit="login()">
           <div class="form-group" ng-class="{ 'has-error' : loginform.email_login.$invalid && !loginform.email_login.$pristine }">

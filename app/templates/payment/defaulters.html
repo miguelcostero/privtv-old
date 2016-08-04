@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <br>
+  <img src="./assets/images/priv6.png" alt="Priv.TV" class="center-block" width="15%" height="15%" />
+  <br>
+  <div class="well">
+    <h3>Pago de deuda <small>resumen de facturación.</small></h3>
+    <hr>
+
+    <form ng-submit="realizar_pago()">
+      <div class="row">
+        <div class="col-xs-6">
+          <p class="impresionante">Deuda total: <b class="text-info">{{ montoTotal | currency:"Bs. ":2 }}</b></p>
+        </div>
+        <div class="col-xs-6">
+          <p class="impresionante">Deuda acumulada: <b class="text-info">{{ diferencia }} meses</b></p>
+        </div>
+      </div>
+
+    <br>
+      <p><b>Suscripción actual</b> <br></p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>NOMBRE</th>
+            <th>DESCRIPCIÓN</th>
+            <th>MONTO MENSUAL</th>
+            <th># USUARIOS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ suscripcion.nombre }}</td>
+            <td>{{ suscripcion.descripcion }}</td>
+            <td>{{ suscripcion.monto_mensual | currency:"Bs. ":2 }}</td>
+            <td>{{ suscripcion.num_usuarios }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <p>Tarjeta de crédito</p>
+        </div>
+        <div class="col-xs-6">
+          <p>Fecha de expiración</p>
+        </div>
+      </div>
+      <div class="panel panel-default cards" ng-class="{ 'panel-danger' : datosPago.invalida }">
+        <div class="panel-heading">
+          <p ng-if="datosPago.invalida"><strong>Su tarjeta se encuentra vencida.</strong></p>
+          <div class="row">
+            <div class="col-xs-6">
+              <img src="./assets/images/visa.png" alt="VISA" ng-if="datosPago.tipo_tarjeta == 'Visa'" width="34" height="21">
+              <img src="./assets/images/mastercard.png" alt="Master Card" ng-if="datosPago.tipo_tarjeta == 'Master Card'" width="34" height="21">
+              <b>{{ datosPago.tipo_tarjeta }}</b> que termina en <strong>{{ datosPago.codigo_tarjeta | limitTo : 4 : 12 }}</strong>
+            </div>
+            <div class="col-xs-6">
+              {{ datosPago.fecha_exp_tarjeta | date : 'MM/yyyy' }}
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <p><strong>Nombre en la tarjeta</strong></p>
+              <p>{{ datosPago.nombre_tarjeta }}</p>
+            </div>
+            <div class="col-xs-6">
+              <p><strong>Dirección de facturación</strong></p>
+              <p>{{ datosPago.direccion_facturacion }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" name="button" class="btn btn-success pull-right" ng-disabled="datosPago.invalida">Pagar ahora</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

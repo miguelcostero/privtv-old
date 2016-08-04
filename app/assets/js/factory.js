@@ -36,11 +36,7 @@ app.factory("directoresPelicula", function ($resource) {
     })
 })
 
-app.factory("logCliente", function ($http, $location, sesionesControl, mensajesFlash, $rootScope) {
-    var cacheSession = function (id) {
-        sesionesControl.set("clienteLogin", true);
-        sesionesControl.set("id_cliente", id);
-    }
+app.factory("logCliente", function ($http, sesionesControl, Flash, $rootScope, morosidad) {
     var unCacheSession = function () {
         sesionesControl.unset("clienteLogin");
         sesionesControl.unset("id_cliente");
@@ -55,28 +51,26 @@ app.factory("logCliente", function ($http, $location, sesionesControl, mensajesF
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).success(function (data, status, headers, config) {
               if (status == 200) {
-                $rootScope.logueado = true;
-                $rootScope.loading = false;
-                //si todo ha ido bien limpiamos los mensajes flash
-                mensajesFlash.clear();
-                //creamos la sesión con el email del cliente
-                cacheSession(data[0].idCliente);
-                //redireccionamos a mostrar seleccionar un usuario
-                $location.path("/seleccionar-usuario/"+data[0].idCliente);
+                //verificamos morosidad del cliente
+                morosidad.verificar(data[0].idCliente);
               }
             }).error(function(error, status, headers, config) {
                 if (status == 401) {
                   $rootScope.loading = false;
                   console.log("Error: "+error+". Status: "+status);
-                  mensajesFlash.show("La autentificación ha fallado, ha introducido datos erróneos.");
+                  Flash.create('danger', 'Su correo electrónico y/o contraseña son inválidos.');
                 } else if(status == -1) {
                   $rootScope.loading = false;
                   console.log("Error: "+error+". Status: "+status);
-                  mensajesFlash.show("No se ha podido establecer la conexión a internet.");
+                  Flash.create('danger', 'No se ha podido establecer la conexión a internet.');
+                } else if (status >= 500) {
+                  $rootScope.loading = false;
+                  console.log("Error: "+error+". Status: "+status);
+                  Flash.create('danger', 'Priv.TV esta presentando problemas internos actualmente, por favor intente de nuevo más tarde.');
                 } else {
                   $rootScope.loading = false;
                   console.log("Error: "+error+". Status: "+status);
-                  mensajesFlash.show("Error: "+error+". Status: "+status);
+                  Flash.create('danger', "Error: "+error+". Status: "+status);
                 }
             })
       },
@@ -137,18 +131,6 @@ app.factory("logUsuarios", function ($resource, sesionesControl) {
       return sesionesControl.get("usuarioLogin");
     }
   }
-});
-
-//esto simplemente es para lanzar un mensaje si el login falla, se puede extender para darle más uso
-app.factory("mensajesFlash", function($rootScope){
-    return {
-        show : function (message) {
-            $rootScope.flash = message;
-        },
-        clear : function(){
-            $rootScope.flash = "";
-        }
-    }
 });
 
 app.factory("subtitulos", function ($resource) {
@@ -213,31 +195,30 @@ app.factory("planes", function ($resource) {
       })
 })
 
-app.directive('validNumber', function() {
+app.factory("morosidad", function ($http, $state, $rootScope, Flash, sesionesControl) {
   return {
-    require: '?ngModel',
-    link: function(scope, element, attrs, ngModelCtrl) {
-      if(!ngModelCtrl) {
-        return;
-      }
+    verificar: function (idC) {
+      return $http({
+        url: 'http://' + api_url + '/clientes/'+ idC +'/moroso',
+        method: "GET"
+      }).success((data, status, headers, config) => {
+        let ultimo_pago = moment(data.fecha_hora);
+        let hoy = moment();
+        let diferencia = hoy.diff(ultimo_pago, "months");
 
-      ngModelCtrl.$parsers.push(function(val) {
-        if (angular.isUndefined(val)) {
-            var val = '';
+        if (diferencia > 0) {
+          $rootScope.loading = false;
+          $state.go("defaulters", { id_cliente: idC }, { reload:true });
+        } else {
+          $rootScope.logueado = true;
+          $rootScope.loading = false;
+          sesionesControl.set("clienteLogin", true);
+          sesionesControl.set("id_cliente", idC);
+          $state.go('users-login', { id_cliente: idC }, {reload:true});
         }
-        var clean = val.replace( /[^0-9]+/g, '');
-        if (val !== clean) {
-          ngModelCtrl.$setViewValue(clean);
-          ngModelCtrl.$render();
-        }
-        return clean;
-      });
-
-      element.bind('keypress', function(event) {
-        if(event.keyCode === 32) {
-          event.preventDefault();
-        }
-      });
+      }).error((error, status, headers, config) => {
+        console.log(error);
+      })
     }
-  };
-});
+  }
+})

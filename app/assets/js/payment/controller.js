@@ -14,8 +14,6 @@ app.controller("PaymentController", function ($scope, $rootScope, $location, $st
 
   suscripcion.get({ id_cliente: sesionesControl.get("id_cliente") }, function (data) {
     $scope.suscripcion = data[0];
-
-
   })
 
   cliente.get({}, { id_cliente: sesionesControl.get("id_cliente") }, function (data) {
@@ -90,17 +88,16 @@ app.controller("PaymentController", function ($scope, $rootScope, $location, $st
         $scope.noPays = data[0].msg;
       } else {
         let diferencia = moment().diff(moment(data[data.length -1].fecha_hora), "months");
-        let prox_pagoN = moment(data[data.length - 1].fecha_hora).add((diferencia + 1), "months").format("YYYY-MM-DD");
 
         let para_enviar = {
           montoTotal: $scope.montoTotal,
           idCliente: $scope.cliente.idCliente,
-          prox_pago: prox_pagoN
+          prox_pago: new Date(moment().add(1, 'months'))
         }
 
         Pagos.pay({}, { datos: para_enviar }, function (datos) {
           $scope.pagos = datos;
-          $state.go("payment.billing",{}, {reload:true})
+          $state.go("payment.billing",{}, { reload:true })
           Flash.create('success', 'Se ha procesado el pago correctamente.');
         })
       }
