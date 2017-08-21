@@ -1,21 +1,23 @@
-#Priv.TV - Desktop App
+# Priv.TV - Desktop App
 
-Proyecto Ing. del software 2
 
-Como instalar:
+
+How can I install it?
 ----------
 
- 1. Instalar NodeJS v6.1.0
- 2. Clonar repositorio.
- 2. Acceder a la carpeta del proyecto.
- 2. Instalar dependencias globales: `npm install -g gulp bower`
- 3. Instalar dependencias locales: `npm install`
+ 1. Install NodeJS v6.1.0
+ 2. Clone this repository
+ 2. `cd` to the cloned repository
+ 2. Install global dependencies by running `npm install -g gulp bower`
+ 3. Install project dependencies with `npm install`
 
-Como ejecutar:
+How can I run it?
 --------------
+
+Run this command on terminal (cmd for windows)
 
     gulp run
 
- O también: 
+ Or
  
      ./node_modules/.bin/electron ./app
